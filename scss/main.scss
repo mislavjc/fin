@@ -1,0 +1,239 @@
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
+
+.navbar {
+    a {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        border-bottom: 5px solid transparent;
+        &:hover {
+            border-bottom: 5px solid rgba(0, 0, 0, 0.233);
+        }
+    }
+    .user a {
+        border-bottom: none;
+        color: red;
+    }
+    position: fixed;
+    width: 100%;
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1;
+}
+
+.vh {
+    height: 65vh;
+    p {
+        font-size: 1.5rem;
+        color: #774df3;
+        font-family: "Raleway", sans-serif;
+        font-weight: 400;
+    }
+    a {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 700;
+        font-size: 1.25rem;
+    }
+}
+
+.display-1,
+.display-2,
+.display-3,
+.display-4 {
+    font-family: "DM Sans", sans-serif;
+}
+
+h2 {
+    font-weight: 300;
+}
+
+.mesh {
+    background: url(../images/light-mesh.png);
+}
+
+.boja {
+    background: #f5f5f6;
+    h1 {
+        color: #5b899e;
+    }
+}
+
+.dark {
+    background-color: #121212;
+}
+
+.dark-card {
+    animation-name: cardDemo;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    .card-title {
+        animation-name: cardDemoTitle;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+    }
+    .btn {
+        color: white;
+        animation-name: cardDemoButton;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+    }
+}
+
+.dark-boja {
+    background-color: #f5f5f6;
+    h1 {
+        color: #5b899e;
+    }
+    animation-name: darkDemo;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+
+.blob {
+    background: url(../images/blob.svg) no-repeat center;
+    // background-size: 80%;
+    animation-name: blobDemo;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes darkDemo {
+    0% {
+        background-color: #f5f5f6;
+    }
+    50% {
+        background-color: #121212;
+        color: white;
+    }
+    100% {
+        background-size: #f5f5f6;
+    }
+}
+
+@keyframes blobDemo {
+    0% {
+        background-size: 0%;
+    }
+    50% {
+        background-size: 95%;
+    }
+    100% {
+        background-size: 0%;
+    }
+}
+
+@keyframes cardDemo {
+    0% {
+        border-radius: 0.5rem;
+    }
+    50% {
+        background: #333;
+        color: white;
+        border-radius: 1rem;
+    }
+    100% {
+        background: white;
+        border-radius: 0rem;
+    }
+}
+
+@keyframes cardDemoTitle {
+    0% {
+        color: #7828e2;
+    }
+    50% {
+        color: #6cf0b3;
+    }
+    100% {
+        color: red;
+    }
+}
+
+@keyframes cardDemoButton {
+    0% {
+        border-radius: 0.25rem;
+    }
+    50% {
+        border-radius: 0.5rem;
+    }
+    100% {
+        border-radius: 0.25rem;
+    }
+}
+
+.pricing {
+    h5 {
+        font-family: "DM Sans", sans-serif;
+        font-size: 1.75rem;
+    }
+    .enterprise {
+        h5 {
+            background: linear-gradient(
+                90deg,
+                rgba(127, 0, 245, 1) 0%,
+                rgba(70, 252, 238, 1) 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+    .premium {
+        h5 {
+            background: linear-gradient(
+                90deg,
+                rgba(131, 58, 180, 1) 0%,
+                rgba(253, 29, 29, 1) 50%,
+                rgba(252, 176, 69, 1) 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        transform: scale(1.05);
+        transition: all 0.2s ease-in-out;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+    .free {
+        h5 {
+            background: linear-gradient(
+                90deg,
+                rgba(0, 0, 0, 1) 0%,
+                rgba(85, 0, 255, 1) 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+    .cijena {
+        font-family: "DM Sans", sans-serif;
+    }
+    a {
+        display: block;
+    }
+    .card {
+        margin-bottom: 3rem;
+    }
+    .card:not(.premium) {
+        transition: all 0.2s ease-in-out;
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+}
+
+footer {
+    background-color: #c9f0fc;
+    a {
+        display: block;
+        color: #333;
+        text-decoration: none;
+    }
+}
+
+.plava-boja {
+    background-color: #766efe;
+}
