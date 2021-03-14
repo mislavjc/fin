@@ -24,7 +24,8 @@ body {
 }
 
 .vh {
-    height: 65vh;
+    // height: 65vh;
+    margin: 5rem 0;
     p {
         font-size: 1.5rem;
         color: #774df3;
@@ -35,6 +36,24 @@ body {
         font-family: "DM Sans", sans-serif;
         font-weight: 700;
         font-size: 1.25rem;
+    }
+    img {
+        height: 7rem;
+        animation-name: arrowDown;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+    }
+}
+
+@keyframes arrowDown {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(1.5rem);
+    }
+    100% {
+        transform: translateY(0px);
     }
 }
 
@@ -97,7 +116,6 @@ h2 {
 
 .blob {
     background: url(../images/blob.svg) no-repeat center;
-    // background-size: 80%;
     animation-name: blobDemo;
     animation-duration: 10s;
     animation-iteration-count: infinite;
@@ -171,6 +189,9 @@ h2 {
     h5 {
         font-family: "DM Sans", sans-serif;
         font-size: 1.75rem;
+    }
+    img {
+        height: 24px;
     }
     .enterprise {
         h5 {
@@ -247,5 +268,22 @@ footer {
     }
     a {
         color: black;
+    }
+}
+
+.ikone {
+    img {
+        height: 5rem;
+        display: block;
+        width: 40%;
+        margin: 0.5rem auto;
+    }
+    text-align: center;
+    width: 33%;
+}
+
+@media (min-width: 992px) {
+    .crta-desno {
+        border-right: 1px solid black;
     }
 }

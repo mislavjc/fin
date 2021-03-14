@@ -86,7 +86,9 @@
                         <div class="navbar-nav ms-auto user">
                             <% if (!currentUser) { %>
                             <a class="nav-link" href="/login">Prijava</a>
-                            <a class="nav-link btn btn-dark text-white ms-3" href="/register"
+                            <a
+                                class="nav-link btn btn-dark text-white ms-3"
+                                href="/register"
                                 >Registracija</a
                             >
                             <% } else {%>
@@ -113,6 +115,9 @@
                                 <a href="/register" class="btn btn-dark"
                                     >Započnite korištenje</a
                                 >
+                                <div>
+                                    <a href="#features"><img src="icons/arrow_downward_black.svg" alt="arrow down icon"></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -158,9 +163,46 @@
                             Pratiti narudžbe nikada nije bilo jednostavnije
                         </h1>
                         <h2>
-                            Sa mogućnošću filtriranja po kategorijama narudžba
+                            S mogućnošću filtriranja po kategorijama narudžba
                             vam nikada neće promaknuti
                         </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-lg-6 crta-desno">
+                        <h1 class="display-1 text-center">
+                            Istaknute funckcije aplikacije
+                        </h1>
+                    </div>
+                    <div class="col-lg-6 d-flex flex-wrap">
+                        <div class="ikone">
+                            <img src="icons/auto_graph_black.svg" alt="backup icon" />
+                        <p>Upload podataka</p>
+                        </div>
+                        <div class="ikone">
+                            <img src="icons/backup_black.svg" alt="backup icon" />
+                        <p>Upload podataka</p>
+                        </div>
+                        <div class="ikone">
+                            <img src="icons/theme_black.svg" alt="backup icon" />
+                        <p>Upload podataka</p>
+                        </div>
+                        <div class="ikone">
+                            <img src="icons/filter_alt_black.svg" alt="backup icon" />
+                        <p>Upload podataka</p>
+                        </div>
+                        <div class="ikone">
+                            <img src="icons/category_black.svg" alt="backup icon" />
+                        <p>Upload podataka</p>
+                        </div>
+                        <div class="ikone">
+                            <img src="icons/assignment_black.svg" alt="backup icon" />
+                        <p>Upload podataka</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -290,7 +332,7 @@
                                     <img
                                         src="icons/close_black.svg"
                                         alt="x icon"
-                                    />Bez pristupa promjenama sučelja
+                                    />Bez promjena sučelja
                                 </li>
                                 <li class="list-group-item">
                                     <img
