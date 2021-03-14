@@ -1,8 +1,9 @@
 <% layout('layouts/boilerplate')%>
 <div class="mt-1 mt-lg-0">&nbsp;</div>
-<div class="container my-5 my-lg-0 vh d-flex align-items-center justify-content-center">
+<div class="container vh-100 d-flex align-items-center justify-content-center">
     <div class="row">
         <div class="col-lg-12">
+            <h1 class="display-4 text-center">Prijavite se</h1>
             <form
                 action="/login"
                 method="POST"
@@ -10,7 +11,7 @@
                 novalidate
             >
                 <div class="mb-3">
-                    <label class="form-label" for="username">Username</label>
+                    <label class="form-label" for="username">Korisničko ime</label>
                     <input
                         class="form-control"
                         type="text"
@@ -23,17 +24,21 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="password">Password</label>
+                    <label class="form-label" for="password">Lozinka</label>
                     <input
                         class="form-control"
                         type="password"
                         id="password"
                         name="password"
+                        size="50"
                         required
                     />
                     <div class="valid-feedback">Looks good!</div>
                 </div>
-                <button class="btn btn-success btn-block">Login</button>
+                <button class="btn btn-dark mb-1">Prijava</button>
+                <div class="dodatno">
+                    <span>Nemate račun?</span> <a href="/register">Registrirajte se</a>
+                </div>
             </form>
         </div>
     </div>
