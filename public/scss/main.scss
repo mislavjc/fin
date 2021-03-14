@@ -23,8 +23,7 @@ body {
     z-index: 1;
 }
 
-.vh {
-    // height: 65vh;
+.pocetak {
     margin: 5rem 0;
     p {
         font-size: 1.5rem;
@@ -78,9 +77,6 @@ h2 {
 
 .boja {
     background: #f5f5f6;
-    h1 {
-        color: #5b899e;
-    }
 }
 
 .dark {
@@ -185,6 +181,10 @@ h2 {
     }
 }
 
+.zelena-boja {
+    background-color:#a8b6cb;
+}
+
 .pricing {
     h5 {
         font-family: "DM Sans", sans-serif;
@@ -250,7 +250,7 @@ h2 {
 }
 
 footer {
-    background-color: #cbd2fd;
+    background-color: #a8b6cb;
     a {
         display: block;
         color: #333;
@@ -260,6 +260,28 @@ footer {
 
 .plava-boja {
     background-color: #766efe;
+}
+
+.koristenje {
+    display: inline-block;
+    color: #000;
+    font-size: 1.5rem;
+    text-decoration: none;
+    &::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 2px;
+        background: #000;
+        transition: width 0.3s;
+    }
+    &:hover {
+        color: #000;
+        &::after {
+            width: 100%;
+            transition: width 0.3s;
+        }
+    }
 }
 
 .dodatno {
