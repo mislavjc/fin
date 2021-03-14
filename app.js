@@ -17,7 +17,7 @@ const ExpressError = require("./utils/ExpressError");
 const userRoutes = require("./routes/users");
 const MongoDBStore = require("connect-mongo")(session);
 
-const dbUrl = "mongodb://localhost:27017/fin"
+const dbUrl = "mongodb://localhost:27017/fin";
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -45,7 +45,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // !Session
 
-const secret = process.env.SECRET || "thisshouldbeabettersecret!"
+const secret = process.env.SECRET || "thisshouldbeabettersecret!";
 
 const store = new MongoDBStore({
     url: "mongodb://localhost:27017/fin",
@@ -53,9 +53,9 @@ const store = new MongoDBStore({
     touchAfter: 24 * 60 * 60,
 });
 
-store.on("error", function(e) {
-    console.log("SESSION STORE ERROR", e)
-})
+store.on("error", function (e) {
+    console.log("SESSION STORE ERROR", e);
+});
 
 const sessionConfig = {
     store,
@@ -96,6 +96,8 @@ app.use((req, res, next) => {
 
 // !Routes
 
+app.use("/", userRoutes);
+
 app.get("/", (req, res) => {
     res.render("home");
 });
@@ -104,7 +106,7 @@ app.get("/", (req, res) => {
 
 app.all("*", (req, res, next) => {
     // next(new ExpressError("Page Not Found", 404));
-    res.send("404")
+    res.send("404");
 });
 
 app.use((err, req, res, next) => {
