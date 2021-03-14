@@ -31,6 +31,11 @@
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
         <link
+            href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+            rel="stylesheet"
+        />
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <link
             href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Poppins:wght@300;400&display=swap"
             rel="stylesheet"
         />
@@ -80,7 +85,9 @@
                                 href="/"
                                 >Naslovnica</a
                             >
-                            <a class="nav-link" href="#features">Funkcionalnosti</a>
+                            <a class="nav-link" href="#features"
+                                >Funkcionalnosti</a
+                            >
                             <a class="nav-link" href="#pricing">Cijene</a>
                         </div>
                         <div class="navbar-nav ms-auto user">
@@ -116,7 +123,11 @@
                                     >Započnite korištenje</a
                                 >
                                 <div>
-                                    <a href="#features"><img src="icons/arrow_downward_black.svg" alt="arrow down icon"></a>
+                                    <a href="#features"
+                                        ><img
+                                            src="icons/arrow_downward_black.svg"
+                                            alt="arrow down icon"
+                                    /></a>
                                 </div>
                             </div>
                         </div>
@@ -128,17 +139,21 @@
         <div class="container-fluid">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 d-flex flex-column justify-content-center">
+                    <div
+                        class="col-lg-6 d-flex flex-column justify-content-center"
+                    >
                         <h1 class="display-4">
                             Napravljeno s iskustvom korisnika na prvom mjestu
                         </h1>
                         <h2>
                             Zaboravite na trošenje resursa na treniranje
-                            zaposlenika kako se koristiti zastarjelim softverom za
-                            unos narudžbi.
+                            zaposlenika kako se koristiti zastarjelim softverom
+                            za unos narudžbi.
                         </h2>
                         <div>
-                            <a href="/register" class="koristenje">Započnite korištenje <span>›</span></a>
+                            <a href="/register" class="koristenje"
+                                >Započnite korištenje <span>›</span></a
+                            >
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -161,16 +176,21 @@
                             class="img-fluid"
                         />
                     </div>
-                    <div class="col-lg-6 d-flex flex-column justify-content-center">
+                    <div
+                        class="col-lg-6 d-flex flex-column justify-content-center"
+                        data-aos="fade-left"
+                    >
                         <h1 class="display-4">
                             Pratiti narudžbe nikada nije bilo jednostavnije
                         </h1>
                         <h2>
-                            S mogućnošću filtriranja po kategorijama, podatci o narudžbama
-                            su uvijek lako dostupni.
+                            S mogućnošću filtriranja po kategorijama, podatci o
+                            narudžbama su uvijek lako dostupni.
                         </h2>
                         <div>
-                            <a href="/register" class="koristenje">Započnite korištenje <span>›</span></a>
+                            <a href="/register" class="koristenje"
+                                >Započnite korištenje <span>›</span></a
+                            >
                         </div>
                     </div>
                 </div>
@@ -178,7 +198,8 @@
         </div>
         <div class="container-fluid">
             <div class="container py-5">
-                <div class="row">
+                <div class="row"
+                data-aos="fade-up">
                     <div class="col-lg-6 crta-desno">
                         <h1 class="display-1 text-center">
                             Istaknute funkcije aplikacije
@@ -186,28 +207,46 @@
                     </div>
                     <div class="col-lg-6 d-flex flex-wrap">
                         <div class="ikone">
-                            <img src="icons/auto_graph_black.svg" alt="graph icon" />
-                        <p>Skalabilnost</p>
+                            <img
+                                src="icons/auto_graph_black.svg"
+                                alt="graph icon"
+                            />
+                            <p>Skalabilnost</p>
                         </div>
                         <div class="ikone">
-                            <img src="icons/backup_black.svg" alt="backup icon" />
-                        <p>Upload podataka</p>
+                            <img
+                                src="icons/backup_black.svg"
+                                alt="backup icon"
+                            />
+                            <p>Upload podataka</p>
                         </div>
                         <div class="ikone">
-                            <img src="icons/theme_black.svg" alt="roller icon" />
-                        <p>Promjenjivost sučelja</p>
+                            <img
+                                src="icons/theme_black.svg"
+                                alt="roller icon"
+                            />
+                            <p>Promjenjivost sučelja</p>
                         </div>
                         <div class="ikone">
-                            <img src="icons/filter_alt_black.svg" alt="filter icon" />
-                        <p>Filtriranje podataka</p>
+                            <img
+                                src="icons/filter_alt_black.svg"
+                                alt="filter icon"
+                            />
+                            <p>Filtriranje podataka</p>
                         </div>
                         <div class="ikone">
-                            <img src="icons/category_black.svg" alt="shapes icon" />
-                        <p>Unos po kategorijama</p>
+                            <img
+                                src="icons/category_black.svg"
+                                alt="shapes icon"
+                            />
+                            <p>Unos po kategorijama</p>
                         </div>
                         <div class="ikone">
-                            <img src="icons/assignment_black.svg" alt="text plot icon" />
-                        <p>Preglednost podataka</p>
+                            <img
+                                src="icons/assignment_black.svg"
+                                alt="text plot icon"
+                            />
+                            <p>Preglednost podataka</p>
                         </div>
                     </div>
                 </div>
@@ -234,7 +273,9 @@
         <div class="container-fluid dark-boja">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 d-flex flex-column justify-content-center">
+                    <div
+                        class="col-lg-6 d-flex flex-column justify-content-center pt-5 p-lg-0"
+                    >
                         <h1 class="display-4">Promjenjivo sučelje</h1>
                         <h2>
                             Svaki element sučelja se može prilagoditi vašim
@@ -283,7 +324,7 @@
         <div class="container-fluid zelena-boja d-flex align-items-center vh">
             <div class="container">
                 <div class="row py-5">
-                    <div class="col-lg-6 order-1 order-lg-0">
+                    <div class="col-lg-6 order-1 order-lg-0" data-aos="fade-right">
                         <img
                             src="images/upload.png"
                             alt="slika narudžbe na ipad uređaju"
@@ -291,14 +332,18 @@
                         />
                     </div>
                     <div class="col-lg-1"></div>
-                    <div class="col-lg-5 d-flex flex-column justify-content-center">
+                    <div
+                        class="col-lg-5 d-flex flex-column justify-content-center"
+                    >
                         <h1 class="display-4">Unos datoteka</h1>
                         <h2>
-                            Spremanje PDF-ova ili slika vezanih uz narudžbe je jedna od
-                            mnogih opcija.
+                            Spremanje PDF-ova ili slika vezanih uz narudžbe je
+                            jedna od mnogih opcija.
                         </h2>
                         <div>
-                            <a href="/register" class="koristenje">Započnite korištenje <span>›</span></a>
+                            <a href="/register" class="koristenje"
+                                >Započnite korištenje <span>›</span></a
+                            >
                         </div>
                     </div>
                     <a name="pricing"></a>
@@ -497,5 +542,8 @@
                 <h5 class="pt-5">&copy;2021 FIN, All Rights Reserved.</h5>
             </div>
         </footer>
+        <script>
+            AOS.init();
+        </script>
     </body>
 </html>
