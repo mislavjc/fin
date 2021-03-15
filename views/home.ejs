@@ -4,12 +4,6 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
             rel="apple-touch-icon"
             sizes="180x180"
@@ -30,6 +24,10 @@
         <link rel="manifest" href="icons/site.webmanifest" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
+        <meta
+            name="description"
+            content="FIN je platforma koja olakšava evidenciju poslovnih procesa, jednostavna je za korištenje te je dostupna bilo kada i bilo gdje."
+        />
         <link
             href="https://unpkg.com/aos@2.3.1/dist/aos.css"
             rel="stylesheet"
@@ -92,14 +90,14 @@
                         </div>
                         <div class="navbar-nav ms-auto user">
                             <% if (!currentUser) { %>
-                            <a class="nav-link" href="/login">Prijava</a>
+                            <a class="nav-link btn btn-outline-dark" href="/login">Prijava</a>
                             <a
                                 class="nav-link btn btn-dark text-white ms-3"
                                 href="/register"
                                 >Registracija</a
                             >
                             <% } else {%>
-                            <a class="nav-link" href="/logout">Logout</a>
+                            <a class="nav-link btn btn-outline-dark" href="/logout">Logout</a>
                             <% } %>
                         </div>
                     </div>
@@ -178,7 +176,7 @@
                     </div>
                     <div
                         class="col-lg-6 d-flex flex-column justify-content-center"
-                        data-aos="fade-left"
+                        data-aos="fade-up"
                     >
                         <h1 class="display-4">
                             Pratiti narudžbe nikada nije bilo jednostavnije
@@ -324,7 +322,7 @@
         <div class="container-fluid zelena-boja d-flex align-items-center vh">
             <div class="container">
                 <div class="row py-5">
-                    <div class="col-lg-6 order-1 order-lg-0" data-aos="fade-right">
+                    <div class="col-lg-6 order-1 order-lg-0" data-aos="fade-up">
                         <img
                             src="images/upload.png"
                             alt="slika narudžbe na ipad uređaju"
@@ -535,7 +533,7 @@
                             href="https://www.linkedin.com/in/mislav-jovanić-811021a8"
                             >Linkedin</a
                         >
-                        <a href="">E-mail</a>
+                        <a href="mailto:mislavjc@gmail.com?subject=FIN">E-mail</a>
                         (+385)95 5344 226
                     </div>
                 </div>

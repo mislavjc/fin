@@ -3,24 +3,48 @@ body {
     font-weight: 400;
 }
 
-.navbar {
-    a {
-        font-family: "Montserrat", sans-serif;
-        font-weight: 700;
-        border-bottom: 5px solid transparent;
-        &:hover {
-            border-bottom: 5px solid rgba(0, 0, 0, 0.233);
+@mixin linkHover {
+        display: inline-block;
+        text-decoration: none;
+        &::after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 2px;
+            background: black;
+            transition: width 0.3s;
         }
-    }
-    .user a {
-        border-bottom: none;
-        color: red;
-    }
+        &:hover {
+            color: black;
+            &::after {
+                width: 100%;
+                transition: width 0.3s;
+            }
+        }
+}
+
+.navbar {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
     width: 100%;
     background: rgba(255, 255, 255, 0);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     z-index: 1;
+    .btn:nth-child(1):hover {
+        color: white;
+    }
+    & a:not(.btn) {
+        @include linkHover;
+    }
+}
+
+.koristenje {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    color: black;
+    @include linkHover;
 }
 
 .pocetak {
@@ -182,7 +206,7 @@ h2 {
 }
 
 .zelena-boja {
-    background-color:#a8b6cb;
+    background-color: #a8b6cb;
 }
 
 .pricing {
@@ -260,29 +284,6 @@ footer {
 
 .plava-boja {
     background-color: #766efe;
-}
-
-.koristenje {
-    display: inline-block;
-    color: #000;
-    font-size: 1.5rem;
-    text-decoration: none;
-    &::after {
-        content: "";
-        display: block;
-        width: 0;
-        height: 2px;
-        background: #000;
-        transition: width 0.3s;
-    }
-    &:hover {
-        color: #000;
-        &::after {
-            width: 100%;
-            transition: width 0.3s;
-        }
-    }
-    margin-bottom: 1rem;
 }
 
 .dodatno {
