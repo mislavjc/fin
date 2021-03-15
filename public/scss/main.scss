@@ -158,14 +158,14 @@ h2 {
 
 @keyframes darkDemo {
     0% {
-        background-color: white;
+        background: #f5f5f6;
     }
     50% {
         background-color: #121212;
         color: white;
     }
     100% {
-        background-size: white;
+        background: #f5f5f6;
     }
 }
 
@@ -218,10 +218,6 @@ h2 {
     100% {
         border-radius: 0.25rem;
     }
-}
-
-.zelena-boja {
-    background-color: #a8b6cb;
 }
 
 .pricing {
@@ -289,11 +285,15 @@ h2 {
 }
 
 footer {
-    background-color: #a8b6cb;
+    background-color: #121212;
+    color: white;
     a {
         display: block;
-        color: #333;
+        color: #a5b4cf;
         text-decoration: none;
+        &:hover {
+            color: #7828e2;
+        }
     }
 }
 
