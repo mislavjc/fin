@@ -50,7 +50,8 @@ body {
 }
 
 .pocetak {
-    margin: 5rem 0;
+    margin: 5rem 0 0 0;
+    padding-bottom: 5rem;
     p {
         font-size: 1.5rem;
         color: #774df3;
@@ -97,6 +98,16 @@ h2 {
     background: url(../images/light-mesh.png);
 }
 
+.dark-mesh {
+    background: url(../images/dark-mesh.png);
+    h1 {
+        color: white;
+    }
+    p {
+        color: #c8caf8;
+    }
+}
+
 @media (min-width: 992px) {
     .mesh {
         background: url(../images/light-mesh.png) no-repeat;
@@ -123,6 +134,12 @@ h2 {
 
 .dark {
     background-color: #121212;
+    color: white;
+}
+
+.dark-price {
+    background-color: #333;
+    color: white;
 }
 
 .dark-card {
@@ -297,7 +314,7 @@ footer {
     }
 }
 
-.sekundarna{
+.sekundarna {
     background-color: $sekundarna;
 }
 

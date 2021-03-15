@@ -52,8 +52,8 @@
         <title>FIN</title>
     </head>
     <body>
-        <div class="mesh">
-            <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="<%= currentUser.theme === "dark" ? "dark-mesh" : "mesh"%>">
+            <nav class="<%= currentUser.theme === "dark" ? "navbar-dark navbar navbar-expand-lg" : "navbar-light navbar navbar-expand-lg"%>">
                 <div class="container">
                     <img
                         src="icons/logo.svg"
@@ -126,6 +126,11 @@
                                                 ><span class="text-muted">Pretplata:</span> <%= currentUser.pretplata %> </a
                                             >
                                         </li>
+                                        <li>
+                                            <a class="dropdown-item nohover" href="#"
+                                                ><span class="text-muted">Tema:</span> <%= currentUser.theme %> </a
+                                            >
+                                        </li>
                                         <li><hr class="dropdown-divider" /></li>
                                         <li>
                                             <a class="dropdown-item " href="/account/<%= currentUser._id %>"
@@ -175,7 +180,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
+        <div class="<%= currentUser.theme === "dark" ? "dark container-fluid": "container-fluid"%>">
             <div class="container">
                 <div class="row">
                     <div
@@ -235,7 +240,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid primarna">
+        <div class="<%= currentUser.theme === "dark" ? "dark container-fluid": "container-fluid primarna"%>">
             <div class="container py-5">
                 <div class="row" data-aos="fade-up">
                     <div class="col-lg-6 crta-desno">
@@ -388,13 +393,13 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid primarna-boja">
+        <div class="<%= currentUser.theme === "dark" ? "dark container-fluid": "container-fluid primarna"%>">
             <div class="container pricing py-5">
                 <div class="row">
                     <h1 class="display-4 text-center mb-4">Cijena</h1>
                     <div class="col-lg-4">
                         <div class="card shadow free">
-                            <div class="card-body">
+                            <div class="<%= currentUser.theme === "dark" ? "card-body dark-price": "card-body"%>">
                                 <h5 class="card-title text-center">
                                     Besplatan
                                 </h5>
@@ -406,35 +411,35 @@
                                     0 kn / mj.
                                 </p>
                             </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
+                            <ul class="<%= currentUser.theme === "dark" ? "list-group list-group-flush dark-price": "list-group list-group-flush"%>">
+                                <li class="<%= currentUser.theme === "dark" ? "list-group list-group-item dark-price": "list-group list-group-item"%>">
                                     <img
                                         src="icons/backup_black.svg"
                                         alt="backup icon"
                                     />
                                     100 MB / mj prijenosa podataka
                                 </li>
-                                <li class="list-group-item">
+                                <li class="<%= currentUser.theme === "dark" ? "list-group list-group-item dark-price": "list-group list-group-item"%>">
                                     <img
                                         src="icons/category_black.svg"
                                         alt="category icon"
                                     />
                                     5 promjenjivih kategorija
                                 </li>
-                                <li class="list-group-item">
+                                <li class="<%= currentUser.theme === "dark" ? "list-group list-group-item dark-price": "list-group list-group-item"%>">
                                     <img
                                         src="icons/close_black.svg"
                                         alt="x icon"
                                     />Bez promjena sučelja
                                 </li>
-                                <li class="list-group-item">
+                                <li class="<%= currentUser.theme === "dark" ? "list-group list-group-item dark-price": "list-group list-group-item"%>">
                                     <img
                                         src="icons/close_black.svg"
                                         alt="x icon"
                                     />Bez filtera
                                 </li>
                             </ul>
-                            <div class="card-body">
+                            <div class="<%= currentUser.theme === "dark" ? "card-body dark-price": "card-body"%>">
                                 <a href="#" class="card-link btn btn-dark"
                                     >Više</a
                                 >
@@ -443,7 +448,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="card shadow premium">
-                            <div class="card-body">
+                            <div class="<%= currentUser.theme === "dark" ? "card-body dark-price": "card-body"%>">
                                 <h5 class="card-title text-center">Premium</h5>
                                 <p class="card-text text-center">
                                     Dodatne funkcije za srednje kompleksne
@@ -453,36 +458,36 @@
                                     29,99 kn / mj.
                                 </p>
                             </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
+                            <ul class="<%= currentUser.theme === "dark" ? "list-group list-group-flush dark-price": "list-group list-group-flush"%>">
+                                <li class="<%= currentUser.theme === "dark" ? "list-group list-group-item dark-price": "list-group list-group-item"%>">
                                     <img
                                         src="icons/backup_black.svg"
                                         alt="backup icon"
                                     />
                                     1 GB / mj prijenosa podataka
                                 </li>
-                                <li class="list-group-item">
+                                <li class="<%= currentUser.theme === "dark" ? "list-group list-group-item dark-price": "list-group list-group-item"%>">
                                     <img
                                         src="icons/category_black.svg"
                                         alt="category icon"
                                     />
                                     10 promjenjivih kategorija
                                 </li>
-                                <li class="list-group-item">
+                                <li class="<%= currentUser.theme === "dark" ? "list-group list-group-item dark-price": "list-group list-group-item"%>">
                                     <img
                                         src="icons/done_all.svg"
                                         alt="checkmark icon"
                                     />
                                     Pristup promjenama sučelja
                                 </li>
-                                <li class="list-group-item">
+                                <li class="<%= currentUser.theme === "dark" ? "list-group list-group-item dark-price": "list-group list-group-item"%>">
                                     <img
                                         src="icons/close_black.svg"
                                         alt="x icon"
                                     />Bez filtera
                                 </li>
                             </ul>
-                            <div class="card-body">
+                            <div class="<%= currentUser.theme === "dark" ? "card-body dark-price": "card-body"%>">
                                 <a href="#" class="card-link btn btn-dark"
                                     >Više</a
                                 >
@@ -491,7 +496,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="card shadow enterprise">
-                            <div class="card-body">
+                            <div class="<%= currentUser.theme === "dark" ? "card-body dark-price": "card-body"%>">
                                 <h5 class="card-title text-center">
                                     Enterprise
                                 </h5>
@@ -503,29 +508,29 @@
                                     99,99 kn / mj.
                                 </p>
                             </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
+                            <ul class="<%= currentUser.theme === "dark" ? "list-group list-group-flush dark-price": "list-group list-group-flush"%>">
+                                <li class="<%= currentUser.theme === "dark" ? "list-group list-group-item dark-price": "list-group list-group-item"%>">
                                     <img
                                         src="icons/backup_black.svg"
                                         alt="backup icon"
                                     />
                                     10 GB / mj prijenosa podataka
                                 </li>
-                                <li class="list-group-item">
+                                <li class="<%= currentUser.theme === "dark" ? "list-group list-group-item dark-price": "list-group list-group-item"%>">
                                     <img
                                         src="icons/category_black.svg"
                                         alt="category icon"
                                     />
                                     20 promjenjivih kategorija
                                 </li>
-                                <li class="list-group-item">
+                                <li class="<%= currentUser.theme === "dark" ? "list-group list-group-item dark-price": "list-group list-group-item"%>">
                                     <img
                                         src="icons/done_all.svg"
                                         alt="checkmark icon"
                                     />
                                     Pristup promjenama sučelja
                                 </li>
-                                <li class="list-group-item">
+                                <li class="<%= currentUser.theme === "dark" ? "list-group list-group-item dark-price": "list-group list-group-item"%>">
                                     <img
                                         src="icons/done_all.svg"
                                         alt="checkmark icon"
@@ -533,7 +538,7 @@
                                     Pristup filterima
                                 </li>
                             </ul>
-                            <div class="card-body">
+                            <div class="<%= currentUser.theme === "dark" ? "card-body dark-price": "card-body"%>">
                                 <a href="#" class="card-link btn btn-dark"
                                     >Više</a
                                 >
