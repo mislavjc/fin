@@ -4,23 +4,23 @@ body {
 }
 
 @mixin linkHover {
-        display: inline-block;
-        text-decoration: none;
+    display: inline-block;
+    text-decoration: none;
+    &::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 2px;
+        background: black;
+        transition: width 0.3s;
+    }
+    &:hover {
+        color: black;
         &::after {
-            content: "";
-            display: block;
-            width: 0;
-            height: 2px;
-            background: black;
+            width: 100%;
             transition: width 0.3s;
         }
-        &:hover {
-            color: black;
-            &::after {
-                width: 100%;
-                transition: width 0.3s;
-            }
-        }
+    }
 }
 
 .navbar {
@@ -28,9 +28,6 @@ body {
     font-weight: 700;
     font-size: 1.1rem;
     width: 100%;
-    background: rgba(255, 255, 255, 0);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     z-index: 1;
     .btn:nth-child(1):hover {
         color: white;
@@ -97,6 +94,27 @@ h2 {
 
 .mesh {
     background: url(../images/light-mesh.png);
+}
+
+
+@media (min-width: 992px) {
+    .mesh {
+        background: url(../images/light-mesh.png) no-repeat;
+        animation-name: mesh;
+        animation-duration: 7s;
+        animation-iteration-count: infinite;
+    }
+    @keyframes mesh {
+        0% {
+            background-size: 90%;
+        }
+        50% {
+            background-size: 120%;
+        }
+        100% {
+            background-size: 90%;
+        }
+    }
 }
 
 .boja {
@@ -309,5 +327,23 @@ footer {
 @media (min-width: 992px) {
     .crta-desno {
         border-right: 1px solid black;
+    }
+    .mesh404 {
+        background: url(../images/404gradient.png) center no-repeat;
+        animation-name: notFound;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes notFound {
+        0% {
+            background-size: 70%;
+        }
+        50% {
+            background-size: 90%;
+        }
+        100% {
+            background-size: 70%;
+        }
     }
 }
