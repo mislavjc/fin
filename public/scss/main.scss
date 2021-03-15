@@ -32,8 +32,10 @@ body {
     .btn:nth-child(1):hover {
         color: white;
     }
-    & a:not(.btn) {
-        @include linkHover;
+    & a:not(.dropdown-toggle){
+        &:not(.nohover) {
+            @include linkHover;
+        }
     }
 }
 

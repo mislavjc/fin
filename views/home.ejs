@@ -90,14 +90,55 @@
                         </div>
                         <div class="navbar-nav ms-auto user">
                             <% if (!currentUser) { %>
-                            <a class="nav-link btn btn-outline-dark" href="/login">Prijava</a>
                             <a
-                                class="nav-link btn btn-dark text-white ms-3"
+                                class="nav-link nohover btn btn-outline-dark"
+                                href="/login"
+                                >Prijava</a
+                            >
+                            <a
+                                class="nav-link nohover btn btn-dark text-white ms-3"
                                 href="/register"
                                 >Registracija</a
                             >
                             <% } else {%>
-                            <a class="nav-link btn btn-outline-dark" href="/logout">Logout</a>
+                                <li class="nav-item dropdown">
+                                    <a
+                                        class="nav-link dropdown-toggle"
+                                        href="#"
+                                        id="navbarScrollingDropdown"
+                                        role="button"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        Račun
+                                    </a>
+                                    <ul
+                                        class="dropdown-menu"
+                                        aria-labelledby="navbarScrollingDropdown"
+                                    >
+                                        <li>
+                                            <a class="dropdown-item nohover" href="#"
+                                                ><span class="text-muted">Korisnik:</span> <%= currentUser.username %></a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item nohover" href="#"
+                                                ><span class="text-muted">Pretplata:</span> <%= currentUser.pretplata %> </a
+                                            >
+                                        </li>
+                                        <li><hr class="dropdown-divider" /></li>
+                                        <li>
+                                            <a class="dropdown-item " href="/account/<%= currentUser._id %>"
+                                                >Postavke računa</a
+                                            >
+                                        </li>
+                                    </ul>
+                                </li>
+                            <a
+                                class="nav-link nohover btn btn-outline-dark ms-3"
+                                href="/logout"
+                                >Logout</a
+                            >
                             <% } %>
                         </div>
                     </div>
@@ -196,8 +237,7 @@
         </div>
         <div class="container-fluid">
             <div class="container py-5">
-                <div class="row"
-                data-aos="fade-up">
+                <div class="row" data-aos="fade-up">
                     <div class="col-lg-6 crta-desno">
                         <h1 class="display-1 text-center">
                             Istaknute funkcije aplikacije
@@ -533,7 +573,9 @@
                             href="https://www.linkedin.com/in/mislav-jovanić-811021a8"
                             >Linkedin</a
                         >
-                        <a href="mailto:mislavjc@gmail.com?subject=FIN">E-mail</a>
+                        <a href="mailto:mislavjc@gmail.com?subject=FIN"
+                            >E-mail</a
+                        >
                         (+385)95 5344 226
                     </div>
                 </div>

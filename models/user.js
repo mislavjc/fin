@@ -8,6 +8,14 @@ const UserSchema = new Schema({
         required: true,
         unique: true,
     },
+    pretplata: {
+        type: String,
+        default: "Besplatan",
+    },
+    theme: {
+        type: String,
+        default: "light",
+    },
 });
 
 UserSchema.plugin(passportLocalMongoose);
