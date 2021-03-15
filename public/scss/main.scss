@@ -1,3 +1,6 @@
+@import "./variables";
+@import "./scrollbar";
+
 body {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
@@ -114,8 +117,8 @@ h2 {
     }
 }
 
-.boja {
-    background: #f5f5f6;
+.primarna {
+    background-color: $primarna;
 }
 
 .dark {
@@ -140,10 +143,7 @@ h2 {
 }
 
 .dark-boja {
-    background-color: #f5f5f6;
-    h1 {
-        color: #5b899e;
-    }
+    background-color: $primarna;
     animation-name: darkDemo;
     animation-duration: 10s;
     animation-iteration-count: infinite;
@@ -158,14 +158,14 @@ h2 {
 
 @keyframes darkDemo {
     0% {
-        background: #f5f5f6;
+        background: $primarna;
     }
     50% {
         background-color: #121212;
         color: white;
     }
     100% {
-        background: #f5f5f6;
+        background: $primarna;
     }
 }
 
@@ -289,16 +289,16 @@ footer {
     color: white;
     a {
         display: block;
-        color: #a5b4cf;
+        color: $text-muted;
         text-decoration: none;
         &:hover {
-            color: #7828e2;
+            color: $sekundarna;
         }
     }
 }
 
-.plava-boja {
-    background-color: #766efe;
+.sekundarna{
+    background-color: $sekundarna;
 }
 
 .dodatno {
