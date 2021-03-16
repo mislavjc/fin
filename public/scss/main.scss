@@ -95,16 +95,6 @@ h2 {
     background: url(../images/light-mesh.png);
 }
 
-.dark-mesh {
-    background: url(../images/dark-mesh.png);
-    h1 {
-        color: white;
-    }
-    p {
-        color: #c8caf8;
-    }
-}
-
 @media (min-width: 992px) {
     .mesh {
         background: url(../images/light-mesh.png) no-repeat;
@@ -127,16 +117,6 @@ h2 {
 
 .boja {
     background: #f5f5f6;
-}
-
-.dark {
-    background-color: #121212;
-    color: white;
-}
-
-.dark-price {
-    background-color: #333;
-    color: white;
 }
 
 .dark-card {
@@ -314,13 +294,8 @@ footer {
     }
 }
 
-<<<<<<< HEAD
-.sekundarna {
-    background-color: $sekundarna;
-=======
 .plava-boja {
     background-color: #766efe;
->>>>>>> parent of 181ce05 (SCSS cleanup)
 }
 
 .dodatno {

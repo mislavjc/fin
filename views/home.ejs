@@ -29,11 +29,6 @@
             content="FIN je platforma koja olakšava evidenciju poslovnih procesa, jednostavna je za korištenje te je dostupna bilo kada i bilo gdje."
         />
         <link
-            href="https://unpkg.com/aos@2.3.1/dist/aos.css"
-            rel="stylesheet"
-        />
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <link
             href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Poppins:wght@300;400&display=swap"
             rel="stylesheet"
         />
@@ -101,44 +96,51 @@
                                 >Registracija</a
                             >
                             <% } else {%>
-                                <li class="nav-item dropdown">
-                                    <a
-                                        class="nav-link dropdown-toggle"
-                                        href="#"
-                                        id="navbarScrollingDropdown"
-                                        role="button"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                    >
-                                        Račun
-                                    </a>
-                                    <ul
-                                        class="dropdown-menu shadow"
-                                        aria-labelledby="navbarScrollingDropdown"
-                                    >
-                                        <li>
-                                            <a class="dropdown-item nohover" href="#"
-                                                ><span class="text-muted">Korisnik:</span> <%= currentUser.username %></a
+                            <li class="nav-item dropdown">
+                                <a
+                                    class="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="navbarScrollingDropdown"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    Račun
+                                </a>
+                                <ul
+                                    class="dropdown-menu shadow"
+                                    aria-labelledby="navbarScrollingDropdown"
+                                >
+                                    <li>
+                                        <a
+                                            class="dropdown-item nohover"
+                                            href="#"
+                                            ><span class="text-muted"
+                                                >Korisnik:</span
                                             >
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item nohover" href="#"
-                                                ><span class="text-muted">Pretplata:</span> <%= currentUser.pretplata %> </a
+                                            <%= currentUser.username %></a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="dropdown-item nohover"
+                                            href="#"
+                                            ><span class="text-muted"
+                                                >Pretplata:</span
                                             >
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item nohover" href="#"
-                                                ><span class="text-muted">Tema:</span> <%= currentUser.theme %> </a
-                                            >
-                                        </li>
-                                        <li><hr class="dropdown-divider" /></li>
-                                        <li>
-                                            <a class="dropdown-item " href="/account/<%= currentUser._id %>"
-                                                >Postavke računa</a
-                                            >
-                                        </li>
-                                    </ul>
-                                </li>
+                                            <%= currentUser.pretplata %>
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li>
+                                        <a
+                                            class="dropdown-item"
+                                            href="/account/<%= currentUser._id %>"
+                                            >Postavke računa</a
+                                        >
+                                    </li>
+                                </ul>
+                            </li>
                             <a
                                 class="nav-link nohover btn btn-outline-dark ms-0 ms-lg-3"
                                 href="/logout"
@@ -222,7 +224,6 @@
                     </div>
                     <div
                         class="col-lg-6 d-flex flex-column justify-content-center"
-                        data-aos="fade-up"
                     >
                         <h1 class="display-4">
                             Pratiti narudžbe nikada nije bilo jednostavnije
@@ -242,7 +243,7 @@
         </div>
         <div class="container-fluid boja">
             <div class="container py-5">
-                <div class="row" data-aos="fade-up">
+                <div class="row">
                     <div class="col-lg-6 crta-desno">
                         <h1 class="display-1 text-center">
                             Istaknute funkcije aplikacije
@@ -367,7 +368,7 @@
         <div class="container-fluid plava-boja d-flex align-items-center vh">
             <div class="container">
                 <div class="row py-5">
-                    <div class="col-lg-6 order-1 order-lg-0" data-aos="fade-up">
+                    <div class="col-lg-6 order-1 order-lg-0">
                         <img
                             src="images/upload.png"
                             alt="slika narudžbe na ipad uređaju"
@@ -587,8 +588,5 @@
                 <h5 class="pt-5">&copy;2021 FIN, All Rights Reserved.</h5>
             </div>
         </footer>
-        <script>
-            AOS.init();
-        </script>
     </body>
 </html>
