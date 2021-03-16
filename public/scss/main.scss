@@ -1,3 +1,5 @@
+@import "./variables";
+
 body {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
@@ -116,7 +118,7 @@ h2 {
 }
 
 .sekundarna-boja {
-    background-color:$sekundarna;
+    background: $sekundarna;
 }
 
 .dark-card {
@@ -344,3 +346,19 @@ footer {
 .vh-100 {
     height: 60vh;
 }
+
+.racun {
+    border: 1px solid black;
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+    padding: 2rem;
+    p {
+        font-size: 1.25rem;
+    }
+    background-color: white;
+}
+
+// .racun-bg {
+//     background: url(../images/Kander.png) center;
+//     background-size: 80%;
+// }

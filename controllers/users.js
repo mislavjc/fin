@@ -36,3 +36,13 @@ module.exports.logout = (req, res) => {
     req.flash("success", "Doviđenja!");
     res.redirect("/");
 };
+
+module.exports.renderAccount = async (req, res) => {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    if (!user) {
+        req.flash("error", "Taj račun ne postoji!");
+        return res.redirect("/");
+    }
+    res.render("users/account", { user })
+}

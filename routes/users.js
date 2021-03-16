@@ -28,4 +28,8 @@ router
 
 router.get("/logout", users.logout);
 
+// !Account
+
+router.get("/account/:id", users.renderAccount)
+
 module.exports = router;
