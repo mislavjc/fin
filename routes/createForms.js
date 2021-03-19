@@ -4,6 +4,9 @@ const CreateForm = require("../models/createForm");
 const createForms = require("../controllers/createForms");
 const catchAsync = require("../utils/catchAsync");
 
-router.route("/create").get(createForms.renderCreateForm);
+router
+    .route("/create")
+    .get(createForms.renderCreateForm)
+    .post(catchAsync(createForms.storeCreateForm));
 
 module.exports = router;

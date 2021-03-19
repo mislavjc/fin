@@ -1,2 +1,93 @@
 <% layout('layouts/boilerplate')%>
-<h1 class="display-1">CREATE form</h1>
+<div class="container">
+    <h1 class="display-1 text-center">form test</h1>
+    <div class="col-lg-8">
+        <form action="/create" method="POST" novalidate class="validated-form">
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="kategorija1" class="form-label"
+                            >Naziv kategorije</label
+                        >
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="kategorija1"
+                            name="createForm[kategorija1]"
+                        />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="kategorija1Tip" class="form-label"
+                            >Vrsta kategorije</label
+                        >
+                        <select
+                            class="form-select"
+                            id="kategorija1Tip"
+                            name="createForm[kategorija1Tip]"
+                        >
+                            <option selected value="number">Broj</option>
+                            <option value="text">Tekst</option>
+                            <option value="date">Datum</option>
+                            <option value="more">Više njih</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <label for="kategorija1Boja" class="form-label">Boja</label>
+                    <input
+                        type="color"
+                        class="form-control form-control-color"
+                        id="kategorija1Boja"
+                        value="#00000"
+                        name="createForm[kategorija1Boja]"
+                    />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="kategorija2" class="form-label"
+                            >Naziv kategorije</label
+                        >
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="kategorija2"
+                            name="createForm[kategorija2]"
+                        />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="kategorija2Tip" class="form-label"
+                            >Vrsta kategorije</label
+                        >
+                        <select
+                            class="form-select"
+                            id="kategorija2Tip"
+                            name="createForm[kategorija2Tip]"
+                        >
+                            <option selected value="number">Broj</option>
+                            <option value="text">Tekst</option>
+                            <option value="date">Datum</option>
+                            <option value="more">Više njih</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <label for="kategorija2Boja" class="form-label">Boja</label>
+                    <input
+                        type="color"
+                        class="form-control form-control-color"
+                        id="kategorija1Boja"
+                        value="#00000"
+                        name="createForm[kategorija2Boja]"
+                    />
+                </div>
+            </div>
+            <button class="btn btn-dark my-3">Spremi</button>
+        </form>
+    </div>
+</div>
