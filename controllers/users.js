@@ -44,5 +44,5 @@ module.exports.renderAccount = async (req, res) => {
         req.flash("error", "Taj račun ne postoji!");
         return res.redirect("/");
     }
-    res.render("users/account", { user })
-}
+    res.render("users/account", { user });
+};
