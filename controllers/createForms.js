@@ -20,6 +20,10 @@ module.exports.renderCreateForm = (req, res) => {
 
 module.exports.storeCreateKategorije = async (req, res) => {
     const createForm = new CreateForm(req.body.createForm);
+    // for (let i = 1; i <= 20; i++) {
+    //     let kategorija = createForm.kategorija[i]DropDown;
+    //     console.log(kategorija);
+    // }
     await createForm.save();
     console.log(createForm);
     res.redirect("/create/kategorije");

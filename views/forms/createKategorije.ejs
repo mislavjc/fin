@@ -35,7 +35,7 @@
                                     >Vrsta kategorije</label
                                 >
                                 <select
-                                    class="form-select"
+                                    class="form-select drop-down"
                                     id="kategorija<%= i %>Tip"
                                     name="createForm[kategorija<%= i %>Tip]"
                                 >
@@ -58,10 +58,24 @@
                                 type="color"
                                 class="form-control form-control-color"
                                 id="kategorija<%= i %>Boja"
-                                value="#00000"
+                                value="#000000"
                                 name="createForm[kategorija<%= i %>Boja]"
                             />
                         </div>
+                    </div>
+                    <div class="mb-3 d-none" id="kategorija<%= i %>DD">
+                        <label
+                            for="kategorija<%= i %>DropDown"
+                            class="form-label"
+                            >Kategorije 1 dropdown</label
+                        >
+                        <textarea
+                            class="form-control"
+                            id="kategorija<%= i %>DropDown"
+                            rows="3"
+                            name="createForm[kategorija<%= i %>DropDown]"
+                            placeholder="Unesite stavke koje želite imati u dropdownu sa zarezom(,) kao razmaknicom"
+                        ></textarea>
                     </div>
                     <% } %>
                 </div>
@@ -70,3 +84,18 @@
         </div>
     </div>
 </div>
+<script>
+    [...document.querySelectorAll(".drop-down")].forEach(function(item) {
+        item.addEventListener("change", function () {
+            const dropDownId = item.id.slice(0, -3);
+            const dropDown = document.getElementById(dropDownId + "DD");
+            if (item.value === "more") {
+                dropDown.classList.toggle("d-none")
+            }
+            if (item.value !== "more" && !dropDown.classList.contains("d-none")) {
+                dropDown.classList.toggle("d-none");
+            }
+        })
+    })
+
+</script>
