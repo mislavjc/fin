@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const CreateFormSchema = new Schema({
     owner: String,
+    brojKategorija: String,
     kategorija1: String,
     kategorija1Tip: String,
     kategorija1Boja: String,
