@@ -1,0 +1,72 @@
+<% layout('layouts/boilerplate')%>
+<h1 class="display-4 text-center">Unos kategorija</h1>
+<div class="container d-flex flex-column justify-content-center">
+    <div class="row">
+        <div class="col-lg-6">
+            <form
+                action="/create"
+                method="POST"
+                novalidate
+                class="validated-form"
+            >
+                <div class="row">
+                    <% for (let i = 1; i <= currentUser.brojKategorija; i++) {%>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label
+                                    for="kategorija<%= i %>"
+                                    class="form-label"
+                                    >Naziv kategorije <%= i %></label
+                                >
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="kategorija<%= i %>"
+                                    name="createForm[kategorija<%= i %>]"
+                                />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label
+                                    for="kategorija<%= i %>Tip"
+                                    class="form-label"
+                                    >Vrsta kategorije</label
+                                >
+                                <select
+                                    class="form-select"
+                                    id="kategorija<%= i %>Tip"
+                                    name="createForm[kategorija<%= i %>Tip]"
+                                >
+                                    <option selected value="number">
+                                        Broj
+                                    </option>
+                                    <option value="text">Tekst</option>
+                                    <option value="date">Datum</option>
+                                    <option value="more">Više njih</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label
+                                for="kategorija<%= i %>Boja"
+                                class="form-label"
+                                >Boja</label
+                            >
+                            <input
+                                type="color"
+                                class="form-control form-control-color"
+                                id="kategorija<%= i %>Boja"
+                                value="#00000"
+                                name="createForm[kategorija<%= i %>Boja]"
+                            />
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+                <button class="btn btn-dark my-3">Dalje</button>
+            </form>
+        </div>
+    </div>
+</div>

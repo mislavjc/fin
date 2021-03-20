@@ -16,6 +16,7 @@ const UserSchema = new Schema({
         type: String,
         default: "light",
     },
+    brojKategorija: String,
 });
 
 UserSchema.plugin(passportLocalMongoose);

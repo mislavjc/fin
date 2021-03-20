@@ -1,13 +1,32 @@
 const CreateForm = require("../models/createForm");
+const User = require("../models/user");
+
+// !Broj kategorija form
 
 module.exports.storeCreateForm = async (req, res) => {
-    const createForm = new CreateForm(req.body.createForm);
-    createForm.owner = req.user._id;
-    await createForm.save();
-    console.log(createForm);
-    res.redirect("/create")
+    const brojKategorija = req.body.createForm.brojKategorija;
+    const user = await User.findByIdAndUpdate(req.user._id, { brojKategorija });
+    req.user.brojKategorija = req.body.createForm.brojKategorija;
+    console.log(req.user);
+    await user.save();
+    res.redirect("/create/kategorije");
 };
 
 module.exports.renderCreateForm = (req, res) => {
     res.render("forms/createForm");
+};
+
+// !Unos kategorija form
+
+module.exports.storeCreateKategorije = async (req, res) => {
+    const createForm = new CreateForm(req.body.createForm);
+    req.user.brojKategorija = req.body.createForm.brojKategorija;
+    await createForm.save();
+    console.log(createForm);
+    console.log(req.user);
+    res.redirect("/create/kategorije");
+};
+
+module.exports.renderCreateKategorije = async (req, res) => {
+    res.render("forms/createKategorije");
 };
