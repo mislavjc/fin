@@ -9,6 +9,9 @@ router
     .get(createForms.renderCreateForm)
     .post(catchAsync(createForms.storeCreateForm));
 
-router.route("/create/kategorije").get(createForms.renderCreateKategorije)
+router
+    .route("/create/kategorije")
+    .get(createForms.renderCreateKategorije)
+    .post(catchAsync(createForms.storeCreateKategorije));
 
 module.exports = router;

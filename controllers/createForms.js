@@ -20,10 +20,8 @@ module.exports.renderCreateForm = (req, res) => {
 
 module.exports.storeCreateKategorije = async (req, res) => {
     const createForm = new CreateForm(req.body.createForm);
-    req.user.brojKategorija = req.body.createForm.brojKategorija;
     await createForm.save();
     console.log(createForm);
-    console.log(req.user);
     res.redirect("/create/kategorije");
 };
 
