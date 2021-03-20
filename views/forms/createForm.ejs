@@ -1,93 +1,120 @@
 <% layout('layouts/boilerplate')%>
-<div class="container">
-    <h1 class="display-1 text-center">form test</h1>
-    <div class="col-lg-8">
-        <form action="/create" method="POST" novalidate class="validated-form">
-            <div class="row">
-                <div class="col">
-                    <div class="mb-3">
-                        <label for="kategorija1" class="form-label"
-                            >Naziv kategorije</label
-                        >
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="kategorija1"
-                            name="createForm[kategorija1]"
-                        />
-                    </div>
+<h1 class="display-1 text-center">Odabir kategorija</h1>
+<div class="container vh-80 d-flex flex-column justify-content-center">
+    <div class="row">
+        <div class="col-lg-6 d-flex flex-column justify-content-center">
+            <form
+                action="/create"
+                method="POST"
+                novalidate
+                class="validated-form"
+            >
+                <label
+                    for="brojKategorija"
+                    id="kategorijeValue"
+                    class="form-label"
+                    >Broj kategorija: 1</label
+                >
+                <input
+                    type="range"
+                    class="form-range"
+                    min="1"
+                    max="10"
+                    step="1"
+                    id="brojKategorija"
+                    value="1"
+                />
+                <button class="btn btn-dark my-3">Spremi</button>
+            </form>
+        </div>
+        <div
+            class="col-lg-6 d-flex flex-column align-items-center"
+        >
+            <div class="card" style="width: 18rem">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">
+                        Some quick example text to build on the card title and
+                        make up the bulk of the card's content.
+                    </p>
                 </div>
-                <div class="col">
-                    <div class="mb-3">
-                        <label for="kategorija1Tip" class="form-label"
-                            >Vrsta kategorije</label
-                        >
-                        <select
-                            class="form-select"
-                            id="kategorija1Tip"
-                            name="createForm[kategorija1Tip]"
-                        >
-                            <option selected value="number">Broj</option>
-                            <option value="text">Tekst</option>
-                            <option value="date">Datum</option>
-                            <option value="more">Više njih</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <label for="kategorija1Boja" class="form-label">Boja</label>
-                    <input
-                        type="color"
-                        class="form-control form-control-color"
-                        id="kategorija1Boja"
-                        value="#00000"
-                        name="createForm[kategorija1Boja]"
-                    />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="mb-3">
-                        <label for="kategorija2" class="form-label"
-                            >Naziv kategorije</label
-                        >
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="kategorija2"
-                            name="createForm[kategorija2]"
-                        />
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mb-3">
-                        <label for="kategorija2Tip" class="form-label"
-                            >Vrsta kategorije</label
-                        >
-                        <select
-                            class="form-select"
-                            id="kategorija2Tip"
-                            name="createForm[kategorija2Tip]"
-                        >
-                            <option selected value="number">Broj</option>
-                            <option value="text">Tekst</option>
-                            <option value="date">Datum</option>
-                            <option value="more">Više njih</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <label for="kategorija2Boja" class="form-label">Boja</label>
-                    <input
-                        type="color"
-                        class="form-control form-control-color"
-                        id="kategorija1Boja"
-                        value="#00000"
-                        name="createForm[kategorija2Boja]"
-                    />
+                <ul class="list-group list-group-flush">
+                    <% for (let i = 1; i <= 20; i++) {%>
+                    <li class="list-group-item d-none" id="num<%=i%>">
+                        Kategorija <%= i %>
+                    </li>
+                    <% } %>
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
                 </div>
             </div>
-            <button class="btn btn-dark my-3">Spremi</button>
-        </form>
+        </div>
     </div>
 </div>
+<script>
+    const range = document.getElementById("brojKategorija");
+    const kategorijeValue = document.getElementById("kategorijeValue");
+    const prva = document.getElementById("num1");
+    const valueArr = [1];
+    prva.classList.toggle("d-none");
+    range.addEventListener("input", function () {
+        let value = parseInt(range.value);
+        valueArr.push(value);
+        const list = document.getElementById(`num${value}`);
+        if (value != 1) {
+            list.classList.remove("d-none");
+        }
+        kategorijeValue.innerHTML = "Broj kategorija: " + value;
+        const prva = document.getElementById("num1");
+        if (valueArr[valueArr.length - 2] > valueArr[valueArr.length - 1]) {
+            valueArr.splice(-2);
+            document
+                .getElementById(`num${valueArr.length + 1}`)
+                .classList.add("d-none");
+        }
+    });
+</script>
+<!-- <div class="row">
+    <div class="col">
+        <div class="mb-3">
+            <label for="kategorija1" class="form-label"
+                >Naziv kategorije</label
+            >
+            <input
+                type="text"
+                class="form-control"
+                id="kategorija1"
+                name="createForm[kategorija1]"
+            />
+        </div>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label for="kategorija1Tip" class="form-label"
+                >Vrsta kategorije</label
+            >
+            <select
+                class="form-select"
+                id="kategorija1Tip"
+                name="createForm[kategorija1Tip]"
+            >
+                <option selected value="number">Broj</option>
+                <option value="text">Tekst</option>
+                <option value="date">Datum</option>
+                <option value="more">Više njih</option>
+            </select>
+        </div>
+    </div>
+    <div class="col">
+        <label for="kategorija1Boja" class="form-label">Boja</label>
+        <input
+            type="color"
+            class="form-control form-control-color"
+            id="kategorija1Boja"
+            value="#00000"
+            name="createForm[kategorija1Boja]"
+        />
+    </div>
+</div> -->
