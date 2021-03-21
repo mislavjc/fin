@@ -21,7 +21,7 @@
                                 >
                                 <input
                                     type="text"
-                                    class="form-control"
+                                    class="form-control naziv-kategorija"
                                     id="kategorija<%= i %>"
                                     name="createForm[kategorija<%= i %>]"
                                 />
@@ -100,24 +100,28 @@
                     <% if (parseInt(currentUser.brojKategorija) % 2 === 0) {%>
                     <% for (let i = 1; i <= currentUser.brojKategorija / 2; i++)
                     {%>
-                    <li class="list-group-item" id="num<%=2*i-1%>">
-                        Kategorija <%= 2*i - 1 %>
-                        <span id="num<%=2*i%>" class="float-end"
+                    <li class="list-group-item">
+                        <span id="kategorija<%=2*i-1%>li"
+                            >Kategorija <%= 2*i - 1 %></span
+                        >
+                        <span id="kategorija<%=2*i%>li" class="float-end"
                             >Kategorija <%= 2*i %></span
                         >
                     </li>
                     <% } %> <% } else {%> <% for (let i = 1; i <=
                     currentUser.brojKategorija / 2; i++) {%>
-                    <li class="list-group-item" id="num<%=2*i-1%>">
-                        Kategorija <%= 2*i - 1 %>
-                        <span id="num<%=2*i%>" class="float-end"
+                    <li class="list-group-item">
+                        <span id="kategorija<%=2*i-1%>li"
+                            >Kategorija <%= 2*i - 1 %></span
+                        >
+                        <span id="kategorija<%=2*i%>li" class="float-end"
                             >Kategorija <%= 2*i %></span
                         >
                     </li>
                     <% } %>
                     <li
                         class="list-group-item"
-                        id="num<%=currentUser.brojKategorija%>"
+                        id="kategorija<%=currentUser.brojKategorija%>li"
                     >
                         Kategorija <%=currentUser.brojKategorija %>
                     </li>
@@ -147,6 +151,15 @@
             ) {
                 dropDown.classList.toggle("d-none");
             }
+        });
+    });
+    [...document.querySelectorAll(".naziv-kategorija")].forEach(function (
+        item
+    ) {
+        item.addEventListener("input", function () {
+            const listItem = item.id + "li";
+            const li = document.getElementById(listItem);
+            li.innerHTML = item.value;
         });
     });
 </script>
