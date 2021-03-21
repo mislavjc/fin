@@ -187,10 +187,14 @@
     addDisplayNone();
     const previous = document.getElementById("previous");
     const next = document.getElementById("next");
-    let pageStart = 5;
-    let pageEnd = 10;
+    let pageStart = 0;
     next.addEventListener("click", function () {
-        if (pageEnd >= 25) {
+        pageStart += 5
+        if (pageStart == 0) {
+            pageStart = 5;
+        }
+        let pageEnd = pageStart + 5;
+        if (pageEnd > 20) {
             pageStart = 0;
             pageEnd = 5;
         }
@@ -202,23 +206,22 @@
                 item.classList.remove("d-none");
             }
         });
-        pageStart += 5;
-        pageEnd += 5;
+        return pageStart;
     });
     previous.addEventListener("click", function () {
-        if (pageStart >= -5) {
+        pageStart -= 5;
+        if (pageStart == -5) {
             pageStart = 15;
-            pageEnd = 20;
         }
+        let pageEnd = pageStart + 5;
         [...document.querySelectorAll(".kategorija")].forEach(function (item) {
             const id = parseInt(item.id);
-            if (id < pageStart || id > pageEnd) {
+            if (id <= pageStart || id > pageEnd) {
                 item.classList.add("d-none");
             } else {
                 item.classList.remove("d-none");
             }
         });
-        pageStart -= 5;
-        pageEnd -= 5;
+        return pageStart;
     });
 </script>
