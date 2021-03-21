@@ -11,71 +11,74 @@
             >
                 <div class="row">
                     <% for (let i = 1; i <= currentUser.brojKategorija; i++) {%>
-                    <div class="row kategorija d-none" id="<%= i %>">
-                        <div class="col">
-                            <div class="mb-3">
+                    <div class="kategorija d-none" id="<%= i %>">
+                        <div class="row">
+                            <h4>Kategorija <%= i %></h4>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label
+                                        for="kategorija<%= i %>"
+                                        class="form-label"
+                                        >Naziv kategorije</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control naziv-kategorija"
+                                        id="kategorija<%= i %>"
+                                        name="createForm[kategorija<%= i %>]"
+                                    />
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label
+                                        for="kategorija<%= i %>Tip"
+                                        class="form-label"
+                                        >Vrsta kategorije</label
+                                    >
+                                    <select
+                                        class="form-select drop-down"
+                                        id="kategorija<%= i %>Tip"
+                                        name="createForm[kategorija<%= i %>Tip]"
+                                    >
+                                        <option selected value="number">
+                                            Broj
+                                        </option>
+                                        <option value="text">Tekst</option>
+                                        <option value="date">Datum</option>
+                                        <option value="more">Više njih</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
                                 <label
-                                    for="kategorija<%= i %>"
+                                    for="kategorija<%= i %>Boja"
                                     class="form-label"
-                                    >Naziv kategorije <%= i %></label
+                                    >Boja</label
                                 >
                                 <input
-                                    type="text"
-                                    class="form-control naziv-kategorija"
-                                    id="kategorija<%= i %>"
-                                    name="createForm[kategorija<%= i %>]"
+                                    type="color"
+                                    class="form-control form-control-color boja-kategorija"
+                                    id="kategorija<%= i %>Boja"
+                                    value="#000000"
+                                    name="createForm[kategorija<%= i %>Boja]"
                                 />
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="mb-3">
-                                <label
-                                    for="kategorija<%= i %>Tip"
-                                    class="form-label"
-                                    >Vrsta kategorije</label
-                                >
-                                <select
-                                    class="form-select drop-down"
-                                    id="kategorija<%= i %>Tip"
-                                    name="createForm[kategorija<%= i %>Tip]"
-                                >
-                                    <option selected value="number">
-                                        Broj
-                                    </option>
-                                    <option value="text">Tekst</option>
-                                    <option value="date">Datum</option>
-                                    <option value="more">Više njih</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
+                        <div class="mb-3 d-none" id="kategorija<%= i %>DD">
                             <label
-                                for="kategorija<%= i %>Boja"
+                                for="kategorija<%= i %>DropDown"
                                 class="form-label"
-                                >Boja</label
+                                >Kategorije 1 dropdown</label
                             >
-                            <input
-                                type="color"
-                                class="form-control form-control-color boja-kategorija"
-                                id="kategorija<%= i %>Boja"
-                                value="#000000"
-                                name="createForm[kategorija<%= i %>Boja]"
-                            />
+                            <textarea
+                                class="form-control"
+                                id="kategorija<%= i %>DropDown"
+                                rows="3"
+                                name="createForm[kategorija<%= i %>DropDown]"
+                                placeholder="Unesite stavke koje želite imati u dropdownu sa zarezom(,) kao razmaknicom"
+                            ></textarea>
                         </div>
-                    </div>
-                    <div class="mb-3 d-none" id="kategorija<%= i %>DD">
-                        <label
-                            for="kategorija<%= i %>DropDown"
-                            class="form-label"
-                            >Kategorije 1 dropdown</label
-                        >
-                        <textarea
-                            class="form-control"
-                            id="kategorija<%= i %>DropDown"
-                            rows="3"
-                            name="createForm[kategorija<%= i %>DropDown]"
-                            placeholder="Unesite stavke koje želite imati u dropdownu sa zarezom(,) kao razmaknicom"
-                        ></textarea>
                     </div>
                     <% } %>
                 </div>
@@ -88,7 +91,7 @@
                 <button type="submit" class="btn btn-dark my-3">Dalje</button>
             </form>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4 offset-lg-1 d-flex flex-column justify-content-center">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Naslov</h5>
