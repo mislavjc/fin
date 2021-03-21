@@ -82,20 +82,71 @@
                 <button class="btn btn-dark my-3">Dalje</button>
             </form>
         </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Naslov</h5>
+                    <p class="card-text">
+                        Napomena:
+                        <b>
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Dolores odit adipisci similique esse atque
+                            corporis itaque repellat dolorem nisi sit deserunt,
+                            consequuntur ex provident natus?
+                        </b>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <% if (parseInt(currentUser.brojKategorija) % 2 === 0) {%>
+                    <% for (let i = 1; i <= currentUser.brojKategorija / 2; i++)
+                    {%>
+                    <li class="list-group-item" id="num<%=2*i-1%>">
+                        Kategorija <%= 2*i - 1 %>
+                        <span id="num<%=2*i%>" class="float-end"
+                            >Kategorija <%= 2*i %></span
+                        >
+                    </li>
+                    <% } %> <% } else {%> <% for (let i = 1; i <=
+                    currentUser.brojKategorija / 2; i++) {%>
+                    <li class="list-group-item" id="num<%=2*i-1%>">
+                        Kategorija <%= 2*i - 1 %>
+                        <span id="num<%=2*i%>" class="float-end"
+                            >Kategorija <%= 2*i %></span
+                        >
+                    </li>
+                    <% } %>
+                    <li
+                        class="list-group-item"
+                        id="num<%=currentUser.brojKategorija%>"
+                    >
+                        Kategorija <%=currentUser.brojKategorija %>
+                    </li>
+                    <% } %>
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="card-link btn btn-primary">Više</a>
+                    <a href="#" class="card-link float-end btn btn-danger"
+                        >Obriši</a
+                    >
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script>
-    [...document.querySelectorAll(".drop-down")].forEach(function(item) {
+    [...document.querySelectorAll(".drop-down")].forEach(function (item) {
         item.addEventListener("change", function () {
             const dropDownId = item.id.slice(0, -3);
             const dropDown = document.getElementById(dropDownId + "DD");
             if (item.value === "more") {
-                dropDown.classList.toggle("d-none")
-            }
-            if (item.value !== "more" && !dropDown.classList.contains("d-none")) {
                 dropDown.classList.toggle("d-none");
             }
-        })
-    })
-
+            if (
+                item.value !== "more" &&
+                !dropDown.classList.contains("d-none")
+            ) {
+                dropDown.classList.toggle("d-none");
+            }
+        });
+    });
 </script>
