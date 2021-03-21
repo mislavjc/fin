@@ -56,7 +56,7 @@
                             >
                             <input
                                 type="color"
-                                class="form-control form-control-color"
+                                class="form-control form-control-color boja-kategorija"
                                 id="kategorija<%= i %>Boja"
                                 value="#000000"
                                 name="createForm[kategorija<%= i %>Boja]"
@@ -160,6 +160,15 @@
             const listItem = item.id + "li";
             const li = document.getElementById(listItem);
             li.innerHTML = item.value;
+        });
+    });
+    [...document.querySelectorAll(".boja-kategorija")].forEach(function (
+        item
+    ) {
+        item.addEventListener("input", function () {
+            const bojaKategorija = item.id.slice(0, -4);
+            const li = document.getElementById(bojaKategorija + "li");
+            li.style = `color: ${item.value}`;
         });
     });
 </script>
