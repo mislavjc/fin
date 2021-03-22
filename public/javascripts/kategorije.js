@@ -1,3 +1,4 @@
+// !Show dropdown
 [...document.querySelectorAll(".drop-down")].forEach(function (item) {
     item.addEventListener("change", function () {
         const dropDownId = item.id.slice(0, -3);
@@ -10,6 +11,7 @@
         }
     });
 });
+// !Category title
 [...document.querySelectorAll(".naziv-kategorija")].forEach(function (item) {
     item.addEventListener("input", function () {
         const listItem = item.id + "li";
@@ -17,6 +19,7 @@
         li.innerHTML = item.value;
     });
 });
+// !Color picker
 [...document.querySelectorAll(".boja-kategorija")].forEach(function (item) {
     item.addEventListener("input", function () {
         const bojaKategorija = item.id.slice(0, -4);
@@ -24,6 +27,7 @@
         li.style = `color: ${item.value}`;
     });
 });
+// !Count # of categories
 let categoryNum = [];
 [...document.querySelectorAll(".kategorija")].forEach(function (item) {
     const id = parseInt(item.id);
@@ -31,6 +35,7 @@ let categoryNum = [];
     return categoryNum;
 });
 categoryNum = categoryNum[categoryNum.length - 1];
+// !Remove all but first 5
 const addDisplayNone = () => {
     [...document.querySelectorAll(".kategorija")].forEach(function (item) {
         const id = parseInt(item.id);
@@ -44,6 +49,7 @@ addDisplayNone();
 const previous = document.getElementById("previous");
 const next = document.getElementById("next");
 let pageStart = 0;
+// !Next page
 next.addEventListener("click", function () {
     pageStart += 5;
     if (pageStart == 0) {
@@ -64,6 +70,7 @@ next.addEventListener("click", function () {
     });
     return pageStart;
 });
+// !Previous page
 previous.addEventListener("click", function () {
     pageStart -= 5;
     if (pageStart == -5) {
@@ -84,3 +91,10 @@ previous.addEventListener("click", function () {
     });
     return pageStart;
 });
+// !Progress bar
+const progressBar = document.querySelector(".progress-bar");
+for (let i = 33; i < 67; i++) {
+    setTimeout(function () {
+        progressBar.style = `width: ${i}%`;
+    }, i * 25);
+}

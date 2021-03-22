@@ -18,3 +18,10 @@ range.addEventListener("input", function () {
             .classList.add("d-none");
     }
 });
+// !Progress bar
+const progressBar = document.querySelector(".progress-bar");
+for (let i = 0; i < 34; i++) {
+    setTimeout(function () {
+        progressBar.style = `width: ${i}%`;
+    }, i * 25);
+}

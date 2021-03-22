@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "../scss/account.scss"
-    ],
-    "names": [],
-    "file": "account.min.css"
-}
