@@ -25,6 +25,7 @@ module.exports.storeCreateKategorije = async (req, res) => {
     //     console.log(kategorija);
     // }
     await createForm.save();
+    console.log(createForm)
     res.redirect("/create/kategorije");
 };
 

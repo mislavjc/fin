@@ -21,6 +21,7 @@
                 novalidate
                 class="validated-form"
             >
+                <input type="text" value="<%= currentUser._id %>" name="createForm[owner]">
                 <div class="row">
                     <% for (let i = 1; i <= currentUser.brojKategorija; i++) {%>
                     <div class="kategorija d-none" id="<%= i %>">
@@ -37,7 +38,7 @@
                                         type="text"
                                         class="form-control naziv-kategorija"
                                         id="kategorija<%= i %>"
-                                        name="createForm[kategorija<%= i %>]"
+                                        name="createForm[kategorija]"
                                     />
                                 </div>
                             </div>
@@ -51,7 +52,7 @@
                                     <select
                                         class="form-select drop-down"
                                         id="kategorija<%= i %>Tip"
-                                        name="createForm[kategorija<%= i %>Tip]"
+                                        name="createForm[kategorijaTip]"
                                     >
                                         <option selected value="number">
                                             Broj
@@ -73,7 +74,7 @@
                                     class="form-control form-control-color boja-kategorija"
                                     id="kategorija<%= i %>Boja"
                                     value="#000000"
-                                    name="createForm[kategorija<%= i %>Boja]"
+                                    name="createForm[kategorijaBoja]"
                                 />
                             </div>
                         </div>
@@ -87,7 +88,7 @@
                                 class="form-control"
                                 id="kategorija<%= i %>DropDown"
                                 rows="3"
-                                name="createForm[kategorija<%= i %>DropDown]"
+                                name="createForm[kategorijaDropDown]"
                                 placeholder="Unesite stavke koje želite imati u dropdownu sa zarezom(,) kao razmaknicom"
                             ></textarea>
                         </div>

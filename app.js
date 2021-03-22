@@ -14,6 +14,7 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user");
 const ExpressError = require("./utils/ExpressError");
 
+const formRoutes = require("./routes/forms")
 const createFromRoutes = require("./routes/createForms");
 const userRoutes = require("./routes/users");
 const MongoDBStore = require("connect-mongo")(session);
@@ -100,6 +101,8 @@ app.use((req, res, next) => {
 app.use("/", userRoutes);
 
 app.use("/", createFromRoutes);
+
+app.use("/", formRoutes)
 
 app.get("/", (req, res) => {
     res.render("home");

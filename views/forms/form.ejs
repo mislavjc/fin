@@ -1,0 +1,45 @@
+<% layout('layouts/boilerplate')%>
+<div class="container">
+    <h1 class="display-1 text-center">Unesi narudžbu</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <form action="">
+                <% for (let i = 0; i < currentUser.brojKategorija; i++) {%> <% if (i % 2
+                == 0) {%>
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="kategorija<%= i %>" class="form-label"
+                                ><%= formData[1].kategorija[i] %></label
+                            >
+                            <input
+                                type="<%= formData[1].kategorijaTip[i] %>"
+                                class="form-control naziv-kategorija"
+                                id="kategorija<%= i %>"
+                                name="createForm[kategorija<%= i %>]"
+                            />
+                        </div>
+                    </div>
+                    <% } else { %>
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="kategorija<%= i %>" class="form-label"
+                                ><%= formData[1].kategorija[i] %></label
+                            >
+                            <input
+                                type="<%= formData[1].kategorijaTip[i] %>"
+                                class="form-control naziv-kategorija"
+                                id="kategorija<%= i %>"
+                                name="createForm[kategorija<%= i %>]"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <% } %> <% } %>
+                <button class="btn btn-dark my-3">Spremi</button>
+            </form>
+        </div>
+    </div>
+</div>
