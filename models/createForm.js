@@ -7,6 +7,7 @@ const CreateFormSchema = new Schema({
     kategorijaTip: Array,
     kategorijaBoja: Array,
     kategorijaDropDown: Array,
+    kategorijaDD: Array,
 });
 
 module.exports = mongoose.model("CreateForm", CreateFormSchema);
