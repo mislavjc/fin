@@ -1,0 +1,89 @@
+<nav class="navbar navbar-expand-lg navbar-light shadow">
+    <div class="container">
+        <a href="/" class="nohover"
+            ><img
+                src="/icons/logo.svg"
+                height="50px"
+                alt="logo"
+                class="navbar-brand"
+        /></a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="/show"
+                    >Svi unosi</a
+                >
+                <a class="nav-link active" aria-current="page" href="/form"
+                    >Novi unos</a
+                >
+            </div>
+            <div class="navbar-nav ms-auto user">
+                <% if (!currentUser) { %>
+                <a
+                    class="nav-link nohover btn btn-outline-dark mb-3 mb-lg-0"
+                    href="/login"
+                    >Prijava</a
+                >
+                <a
+                    class="nav-link nohover btn btn-dark text-white ms-lg-3"
+                    href="/register"
+                    >Registracija</a
+                >
+                <% } else {%>
+                <li class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarScrollingDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        Račun
+                    </a>
+                    <ul
+                        class="dropdown-menu shadow"
+                        aria-labelledby="navbarScrollingDropdown"
+                    >
+                        <li>
+                            <a class="dropdown-item nohover" href="#"
+                                ><span class="text-muted">Korisnik:</span> <%=
+                                currentUser.username %></a
+                            >
+                        </li>
+                        <li>
+                            <a class="dropdown-item nohover" href="#"
+                                ><span class="text-muted">Pretplata:</span> <%=
+                                currentUser.pretplata %>
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="/account/<%= currentUser._id %>"
+                                >Postavke računa</a
+                            >
+                        </li>
+                    </ul>
+                </li>
+                <a
+                    class="nav-link nohover btn btn-outline-dark ms-3"
+                    href="/logout"
+                    >Logout</a
+                >
+                <% } %>
+            </div>
+        </div>
+    </div>
+</nav>

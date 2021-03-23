@@ -6,7 +6,7 @@ module.exports.storeForm = async (req, res) => {
     const form = new Form(req.body.form);
     await form.save();
     req.flash("success", "Uspješno spremljeno!");
-    res.redirect("/form");
+    res.redirect("/show");
 };
 
 module.exports.renderForm = async (req, res) => {

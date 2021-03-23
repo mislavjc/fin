@@ -1,4 +1,4 @@
-<% layout('layouts/boilerplate')%>
+<% layout('layouts/boilerplateShow')%>
 <div class="container">
     <h1 class="display-4 text-center">Narudžbe</h1>
     <div class="row">
@@ -8,16 +8,18 @@
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">
-                        Some quick example text to build on the card title and make
-                        up the bulk of the card's content.
+                        Some quick example text to build on the card title and
+                        make up the bulk of the card's content.
                     </p>
                 </div>
                 <ul class="list-group list-group-flush">
                     <% for (let j = 0; j < currentUser.brojKategorija; j++) {%>
-                    <li class="list-group-item">
-                        <span style="color: <%= formData[0].kategorijaBoja[j] %>"
-                            ><%= formData[0].kategorija[j] %></span
-                        >: <%= form.kategorija[j] %>
+                    <li
+                        class="list-group-item"
+                        style="color: <%= formData[0].kategorijaBoja[j] %>"
+                    >
+                        <%= formData[0].kategorija[j] %>: <%= form.kategorija[j]
+                        %>
                     </li>
                     <% } %>
                 </ul>
