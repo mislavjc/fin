@@ -1,9 +1,9 @@
 <% layout('layouts/boilerplateShow')%>
-<div class="container">
-    <h1 class="display-4 text-center">Narudžbe</h1>
+<% layout('layouts/boilerplateShow')%>
+<div class="container vh-80 d-flex flex-column justify-content-center">
+    <h1 class="display-4 text-center">Više info</h1>
     <div class="row">
-        <% for (let form of forms) {%>
-        <div class="col-lg-4">
+        <div class="col-lg-6 offset-lg-3">
             <div class="card mb-3">
                 <div class="card-body">
                     <h5
@@ -39,6 +39,5 @@
                 </div>
             </div>
         </div>
-        <% } %>
     </div>
 </div>
