@@ -44,8 +44,8 @@
         <div class="col-lg-4 offset-lg-1 d-flex flex-column align-items-center">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Naslov</h5>
-                    <p class="card-text">
+                    <h5 class="card-title" id="num1">Naslov</h5>
+                    <p class="card-text d-none" id="num2">
                         Napomena:
                         <b>
                             Lorem ipsum dolor sit amet consectetur adipisicing
@@ -56,7 +56,7 @@
                     </p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <% for (let i = 1; i <= 20; i++) {%>
+                    <% for (let i = 2; i <= 20; i++) {%>
                     <li class="list-group-item d-none" id="num<%=2*i-1%>">
                         Kategorija <%= 2*i - 1 %>
                         <span id="num<%=2*i%>" class="float-end d-none"

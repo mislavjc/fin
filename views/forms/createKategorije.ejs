@@ -112,9 +112,9 @@
         >
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Naslov</h5>
-                    <p class="card-text">
-                        Napomena:
+                    <h5 class="card-title" id="kategorija1li">Kategorija 1</h5>
+                    <p class="card-text" id="kategorija2li">
+                        Kategorija 2:
                         <b>
                             Lorem ipsum dolor sit amet consectetur adipisicing
                             elit. Dolores odit adipisci similique esse atque
@@ -125,7 +125,7 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     <% if (parseInt(currentUser.brojKategorija) % 2 === 0) {%>
-                    <% for (let i = 1; i <= currentUser.brojKategorija / 2; i++)
+                    <% for (let i = 2; i <= currentUser.brojKategorija / 2; i++)
                     {%>
                     <li class="list-group-item">
                         <span id="kategorija<%=2*i-1%>li"
@@ -135,7 +135,7 @@
                             >Kategorija <%= 2*i %></span
                         >
                     </li>
-                    <% } %> <% } else {%> <% for (let i = 1; i <=
+                    <% } %> <% } else {%> <% for (let i = 2; i <=
                     currentUser.brojKategorija / 2; i++) {%>
                     <li class="list-group-item">
                         <span id="kategorija<%=2*i-1%>li"

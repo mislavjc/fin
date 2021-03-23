@@ -1,8 +1,6 @@
 const range = document.getElementById("brojKategorija");
 const kategorijeValue = document.getElementById("kategorijeValue");
-const prva = document.getElementById("num1");
 const valueArr = [1];
-prva.classList.toggle("d-none");
 range.addEventListener("input", function () {
     let value = parseInt(range.value);
     valueArr.push(value);
