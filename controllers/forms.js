@@ -73,7 +73,6 @@ module.exports.updateForm = async (req, res) => {
     const { id } = req.params;
     const form = await Form.findByIdAndUpdate(id, { ...req.body.form });
     await form.save();
-    console.log(form);
     req.flash("success", "Uspješno promjenjena narudžba!");
     res.redirect(`/show/${form._id}`);
 };
