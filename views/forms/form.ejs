@@ -3,7 +3,12 @@
     <h1 class="display-1 text-center">Unesi narudžbu</h1>
     <div class="row">
         <div class="col-lg-6 offset-lg-3">
-            <form action="">
+            <form
+                action="/form"
+                method="POST"
+                novalidate
+                class="validated-form"
+            >
                 <% for (let i = 0; i < currentUser.brojKategorija; i++) {%> <%
                 if (i % 2 == 0) {%>
                 <div class="row">
@@ -16,7 +21,7 @@
                             <select
                                 class="form-select"
                                 id="kategorija<%= i %>"
-                                name="form[kategorija<%= i %>]"
+                                name="form[kategorija<%= i + 1 %>]"
                             >
                                 <% for (let j = 0; j <
                                 formData[0].kategorijaDD[i].length; j++) {%>
@@ -35,7 +40,7 @@
                                 type="<%= formData[0].kategorijaTip[i] %>"
                                 class="form-control naziv-kategorija"
                                 id="kategorija<%= i %>"
-                                name="form[kategorija<%= i %>]"
+                                name="form[kategorija<%= i + 1 %>]"
                             />
                             <% } %>
                         </div>
@@ -50,7 +55,7 @@
                             <select
                                 class="form-select"
                                 id="kategorija<%= i %>"
-                                name="form[kategorija<%= i %>]"
+                                name="form[kategorija<%= i + 1 %>]"
                             >
                                 <% for (let j = 0; j <
                                 formData[0].kategorijaDD[i].length; j++) {%>
@@ -69,7 +74,7 @@
                                 type="<%= formData[0].kategorijaTip[i] %>"
                                 class="form-control naziv-kategorija"
                                 id="kategorija<%= i %>"
-                                name="form[kategorija<%= i %>]"
+                                name="form[kategorija<%= i + 1 %>]"
                             />
                             <% } %>
                         </div>

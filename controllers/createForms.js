@@ -7,7 +7,6 @@ module.exports.storeCreateForm = async (req, res) => {
     const brojKategorija = req.body.createForm.brojKategorija;
     const user = await User.findByIdAndUpdate(req.user._id, { brojKategorija });
     req.user.brojKategorija = req.body.createForm.brojKategorija;
-    console.log(req.user);
     await user.save();
     res.redirect("/create/kategorije");
 };
@@ -21,7 +20,7 @@ module.exports.renderCreateForm = (req, res) => {
 module.exports.storeCreateKategorije = async (req, res) => {
     const createForm = new CreateForm(req.body.createForm);
     await createForm.save();
-    res.redirect("/create/kategorije");
+    res.redirect("/form");
 };
 
 module.exports.renderCreateKategorije = async (req, res) => {

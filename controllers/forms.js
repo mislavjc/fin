@@ -2,6 +2,13 @@ const CreateForm = require("../models/createForm");
 const User = require("../models/user");
 const Form = require("../models/form");
 
+module.exports.storeForm = async (req, res) => {
+    const form = new Form(req.body.form);
+    await form.save();
+    req.flash("success", "Uspješno spremljeno!");
+    res.redirect("/form");
+}
+
 module.exports.renderForm = async (req, res) => {
     const user = req.user._id
     const formData = await CreateForm.find({owner: user});
