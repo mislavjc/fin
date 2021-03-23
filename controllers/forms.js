@@ -4,6 +4,7 @@ const Form = require("../models/form");
 
 module.exports.storeForm = async (req, res) => {
     const form = new Form(req.body.form);
+    form.owner = req.user._id;
     await form.save();
     req.flash("success", "Uspješno spremljeno!");
     res.redirect("/show");
@@ -27,7 +28,7 @@ module.exports.renderForm = async (req, res) => {
 
 module.exports.formData = async (req, res) => {
     const user = req.user._id;
-    const forms = await Form.find({});
+    const forms = await Form.find({ owner: user });
     const formData = await CreateForm.find({ owner: user });
     res.render("forms/show", { forms, formData });
 };

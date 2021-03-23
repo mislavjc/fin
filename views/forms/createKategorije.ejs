@@ -21,7 +21,6 @@
                 novalidate
                 class="validated-form"
             >
-                <input type="text" value="<%= currentUser._id %>" name="createForm[owner]" class="d-none">
                 <div class="row">
                     <% for (let i = 1; i <= currentUser.brojKategorija; i++) {%>
                     <div class="kategorija d-none" id="<%= i %>">

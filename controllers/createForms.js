@@ -19,6 +19,7 @@ module.exports.renderCreateForm = (req, res) => {
 
 module.exports.storeCreateKategorije = async (req, res) => {
     const createForm = new CreateForm(req.body.createForm);
+    createForm.owner = req.user._id;
     await createForm.save();
     res.redirect("/form");
 };
