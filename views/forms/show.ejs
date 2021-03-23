@@ -1,0 +1,29 @@
+<% layout('layouts/boilerplate')%>
+<div class="container">
+    <h1 class="display-4 text-center">Narudžbe</h1>
+    <div class="row">
+        <% let i = 0; %> <% for (let form of forms) {%>
+        <div class="col-lg-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">
+                        Some quick example text to build on the card title and make
+                        up the bulk of the card's content.
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <% for (let j = 0; j < currentUser.brojKategorija; j++) {%>
+                    <li class="list-group-item">
+                        <span style="color: <%= formData[0].kategorijaBoja[j] %>"
+                            ><%= formData[0].kategorija[j] %></span
+                        >: <%= form.kategorija[j] %>
+                    </li>
+                    <% } %>
+                </ul>
+                <% i++; %>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>
