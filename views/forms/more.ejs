@@ -31,6 +31,64 @@
                     </li>
                     <% } %>
                 </ul>
+                <% if (form.datoteke.length == 0) { %> <% } else {%>
+                <li class="list-group-item">
+                    <div class="row">
+                        <% for (let datoteka of form.datoteke) {%> <% if
+                        (datoteka.url.slice(-3) == "pdf") {%> <% if
+                        (form.datoteke.length == 1) {%>
+                        <div class="col-lg-12 mb-3">
+                            <a
+                                href="<%= datoteka.url %>"
+                                class="btn btn-dark d-block"
+                                >Link</a
+                            >
+                            <embed
+                                height="500px"
+                                width="100%"
+                                name="plugin"
+                                src="<%= datoteka.url %>"
+                                type="application/pdf"
+                            />
+                        </div>
+                        <% } else {%>
+                        <div class="col-lg-6 mb-3">
+                            <a
+                                href="<%= datoteka.url %>"
+                                class="btn btn-dark d-block"
+                                >Link</a
+                            >
+                            <embed
+                                height="500px"
+                                width="100%"
+                                name="plugin"
+                                src="<%= datoteka.url %>"
+                                type="application/pdf"
+                            />
+                        </div>
+                        <% } %> <% } else {%> <% if (form.datoteke.length == 1)
+                        { %>
+                        <div class="col-lg-12 mb-3">
+                            <a
+                                href="<%= datoteka.url %>"
+                                class="btn btn-dark d-block"
+                                >Link</a
+                            >
+                            <img src="<%= datoteka.url %>" class="img-fluid" />
+                        </div>
+                        <% } else {%>
+                        <div class="col-lg-6 mb-3">
+                            <a
+                                href="<%= datoteka.url %>"
+                                class="btn btn-dark d-block"
+                                >Link</a
+                            >
+                            <img src="<%= datoteka.url %>" class="img-fluid" />
+                        </div>
+                        <% }%> <% } %> <% } %>
+                    </div>
+                </li>
+                <% } %>
                 <div class="card-body">
                     <a
                         href="/show/<%= form._id %>/edit"

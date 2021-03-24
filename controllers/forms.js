@@ -7,6 +7,10 @@ const Form = require("../models/form");
 module.exports.storeForm = async (req, res) => {
     const form = new Form(req.body.form);
     form.owner = req.user._id;
+    form.datoteke = req.files.map((f) => ({
+        url: f.path,
+        filename: f.filename,
+    }));
     await form.save();
     req.flash("success", "Uspješno spremljeno!");
     res.redirect("/show");
@@ -72,6 +76,8 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.updateForm = async (req, res) => {
     const { id } = req.params;
     const form = await Form.findByIdAndUpdate(id, { ...req.body.form });
+    const dat = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+    form.datoteke.push(...dat);
     await form.save();
     req.flash("success", "Uspješno promjenjena narudžba!");
     res.redirect(`/show/${form._id}`);

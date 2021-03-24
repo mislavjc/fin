@@ -8,6 +8,7 @@
                 method="POST"
                 novalidate
                 class="validated-form"
+                enctype="multipart/form-data"
             >
                 <% for (let i = 0; i < currentUser.brojKategorija; i++) {%> <%
                 if (i % 2 == 0) {%>
@@ -85,6 +86,16 @@
                     </div>
                 </div>
                 <% } %> <% } %>
+                <div class="mb-3">
+                    <label for="file" class="form-label">Unesi file:</label>
+                    <input
+                        class="form-control"
+                        type="file"
+                        id="file"
+                        name="image"
+                        multiple
+                    />
+                </div>
                 <button class="btn btn-dark my-3">Spremi</button>
             </form>
         </div>

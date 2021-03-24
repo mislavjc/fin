@@ -4,6 +4,12 @@ const Schema = mongoose.Schema;
 const FormSchema = new Schema({
     owner: String,
     kategorija: Array,
+    datoteke: [
+        {
+            url: String,
+            filename: String,
+        },
+    ],
 });
 
 module.exports = mongoose.model("Form", FormSchema);

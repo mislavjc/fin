@@ -2,8 +2,14 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const forms = require("../controllers/forms");
 const catchAsync = require("../utils/catchAsync");
+const multer = require("multer");
+const { storage } = require("../cloudinary");
+const upload = multer({ storage });
 
-router.route("/form").get(forms.renderForm).post(catchAsync(forms.storeForm));
+router
+    .route("/form")
+    .get(forms.renderForm)
+    .post(upload.array("image"), catchAsync(forms.storeForm));
 
 router.route("/show").get(catchAsync(forms.formData));
 
@@ -15,6 +21,6 @@ router
 router
     .route("/show/:id/edit")
     .get(catchAsync(forms.renderEditForm))
-    .put(catchAsync(forms.updateForm));
+    .put(upload.array("image"), catchAsync(forms.updateForm));
 
 module.exports = router;
