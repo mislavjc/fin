@@ -1,0 +1,23 @@
+<% layout('layouts/boilerplateShow')%>
+<div class="container vh-80">
+    <table class="table">
+        <thead>
+            <tr>
+                <% for (let i = 0; i < currentUser.brojKategorija; i++) {%>
+                <th scope="col"><%= formData[0].kategorija[i] %></th>
+                <% } %>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let form of forms) {%>
+            <tr>
+                <% for (let i = 0; i < currentUser.brojKategorija; i++) {%>
+                <td style="color: <%= formData[0].kategorijaBoja[i] %>">
+                    <%= form.kategorija[i] %>
+                </td>
+                <% } %>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>

@@ -11,6 +11,8 @@ router
     .get(forms.renderForm)
     .post(upload.array("image"), catchAsync(forms.storeForm));
 
+router.route("/table").get(catchAsync(forms.renderTable));
+
 router.route("/filter").get(forms.renderFilter).post(catchAsync(forms.storeFilter));
 
 router.route("/show").get(catchAsync(forms.formData));

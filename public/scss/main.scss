@@ -390,3 +390,8 @@ footer {
     font-size: 1.25rem;
     @include linkHover;
 }
+
+th {
+    position: sticky;
+    top: 0;
+}

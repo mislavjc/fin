@@ -11,6 +11,7 @@ module.exports.storeForm = async (req, res) => {
         url: f.path,
         filename: f.filename,
     }));
+    await form.save();
     req.flash("success", "Uspješno spremljeno!");
     res.redirect("/show");
 };
@@ -90,6 +91,15 @@ module.exports.deleteForm = async (req, res) => {
     await Form.findByIdAndDelete(id);
     req.flash("success", "Uspješno obrisana narudžba!");
     res.redirect("/show");
+};
+
+// !Table view
+
+module.exports.renderTable = async (req, res) => {
+    const user = req.user._id;
+    const forms = await Form.find({ owner: user });
+    const formData = await CreateForm.find({ owner: user });
+    res.render("forms/table", { forms, formData });
 };
 
 // !Filter
