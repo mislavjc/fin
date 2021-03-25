@@ -6,6 +6,7 @@
                 <% for (let i = 0; i < currentUser.brojKategorija; i++) {%>
                 <th scope="col"><%= formData[0].kategorija[i] %></th>
                 <% } %>
+                <th>Link</th>
             </tr>
         </thead>
         <tbody>
@@ -16,6 +17,9 @@
                     <%= form.kategorija[i] %>
                 </td>
                 <% } %>
+                <td>
+                    <a href="/show/<%= form._id %>">Više</a>
+                </td>
             </tr>
             <% } %>
         </tbody>

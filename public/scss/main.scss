@@ -395,3 +395,10 @@ th {
     position: sticky;
     top: 0;
 }
+
+td {
+    a {
+        color: #333;
+        @include linkHover;
+    }
+}
