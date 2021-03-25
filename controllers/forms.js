@@ -11,7 +11,6 @@ module.exports.storeForm = async (req, res) => {
         url: f.path,
         filename: f.filename,
     }));
-    await form.save();
     req.flash("success", "Uspješno spremljeno!");
     res.redirect("/show");
 };
@@ -40,6 +39,7 @@ module.exports.formData = async (req, res) => {
     const formData = await CreateForm.find({ owner: user });
     res.render("forms/show", { forms, formData });
 };
+
 // !More info page
 
 module.exports.showForm = async (req, res) => {
@@ -90,4 +90,37 @@ module.exports.deleteForm = async (req, res) => {
     await Form.findByIdAndDelete(id);
     req.flash("success", "Uspješno obrisana narudžba!");
     res.redirect("/show");
+};
+
+// !Filter
+
+module.exports.renderFilter = async (req, res) => {
+    const user = req.user._id;
+    const formData = await CreateForm.find({ owner: user });
+    res.render("forms/filter", { formData });
+};
+
+module.exports.storeFilter = async (req, res) => {
+    const user = req.user._id;
+    const filterData = req.body.form.kategorija;
+    const forms = await Form.find({ owner: user });
+    const filter = {};
+    for (let i = 0; i < filterData.length; i++) {
+        filter[`kategorija[${i}]`] = filterData[i];
+    }
+    for (let i = 0; i < filterData.length; i++) {
+        if (filter[`kategorija[${i}]`] === "") {
+            delete filter[`kategorija[${i}]`];
+        }
+    }
+    console.log(filter);
+    for (let i = 0; i < forms.length; i++) {
+        narudzbe = {};
+        for (let j = 0; j < filterData.length; j++) {
+            narudzbe[`kategorija[${j}]`] = forms[i].kategorija[j];
+        }
+        console.log(narudzbe)
+    }
+    req.flash("success", "Uspiešno spremljeno!");
+    res.redirect("/filter");
 };
