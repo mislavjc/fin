@@ -1,8 +1,7 @@
-const Category = require("../models/category");
 const FieldType = require("../models/fieldType");
-const Order = require("../models/order");
 const Field = require("../models/field");
 const Template = require("../models/template");
+const { cloudinary } = require("../cloudinary");
 
 // !Form logic
 
@@ -69,6 +68,17 @@ module.exports.updateForm = async (req, res) => {
         await field.save();
     }
     await template.save();
+    if (req.body.deleteImages) {
+        for (let filename of req.body.deleteImages) {
+            await cloudinary.uploader.destroy(filename);
+        }
+        await template.updateOne(
+            {
+                $pull: { attachments: { filename: { $in: req.body.deleteImages } } },
+            },
+            { new: true }
+        );
+    }
     req.flash("success", "Uspješno promjenjena narudžba!");
     res.redirect(`/show/${template._id}`);
 };

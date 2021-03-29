@@ -95,6 +95,68 @@
                         multiple
                     />
                 </div>
+                <div class="mb-3">
+                    <div class="row">
+                        <h3 class="text-center ">Priložene datoteke</h3>
+                        <% template.attachments.forEach(function(file, i) { %>
+                        <% if (template.attachments.length !== 1) { %>
+                            <div class="col-lg-6">
+                                <div class="card">
+                            <div class="card-body">
+                            <embed
+                            height="500px"
+                            width="100%"
+                            name="plugin"
+                            src="<%= file.url %>"
+                            type="application/pdf"
+                            />
+                            </div>
+
+                            <div class="card-body">
+                            <div class="btn btn-dark">
+                                <div class="form-check-inline">
+                        <input
+                            type="checkbox"
+                            id="file-<%=i%>"
+                            name="deleteImages[]"
+                            value="<%=file.filename%>"
+                        />
+                        <label for="file-<%=i%>">Obrisati file?</label>
+                        </div></div>
+                        </div>
+                        </div>
+                            </div>
+                        <% } else { %>
+                            <div class="col-lg-12">
+                                <div class="card">
+                            <div class="card-body">
+                            <embed
+                            height="500px"
+                            width="100%"
+                            name="plugin"
+                            src="<%= file.url %>"
+                            type="application/pdf"
+                            />
+                            </div>
+
+                            <div class="card-body">
+                            <div class="btn btn-dark">
+                                <div class="form-check-inline">
+                        <input
+                            type="checkbox"
+                            id="file-<%=i%>"
+                            name="deleteImages[]"
+                            value="<%=file.filename%>"
+                        />
+                        <label for="file-<%=i%>">Obrisati file?</label>
+                        </div></div>
+                        </div>
+                        </div>
+                            </div>
+                        <% } %>
+                    <% }) %>
+                    </div>
+                </div>
                 <button class="btn btn-dark my-3">Spremi</button>
             </form>
         </div>
