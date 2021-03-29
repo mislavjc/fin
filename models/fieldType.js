@@ -5,6 +5,7 @@ const FieldTypeSchema = new Schema({
     name: String,
     type: String,
     color: String,
+    additional: Schema.Types.Mixed,
     owner: String,
 });
 

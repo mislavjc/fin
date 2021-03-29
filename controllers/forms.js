@@ -122,3 +122,25 @@ module.exports.renderTable = async (req, res) => {
     const fieldTypes = await FieldType.find({ owner: req.user._id });
     res.render("forms/table", { templates, fieldTypes });
 };
+
+// !Filter logic
+
+// module.epxorts.storeFilter = async (req, res) => {
+//     const user = req.user._id;
+//     const fieldType = await FieldType.find({ owner: req.user._id });
+//     const templates = [];
+//     for (let i = 0; i < req.body.form.category.length; i++) {
+//         const field = new Field({
+//             value: req.body.form.category[i],
+//             owner: user,
+//             fieldtype: fieldType[i],
+//         });
+//         await field.save();
+//         templates.push(field);
+//     }
+// }
+
+module.exports.renderFilter = async (req, res) => {
+    const fieldType = await FieldType.find({ owner: req.user._id });
+    res.render("forms/filter", { fieldType });
+};

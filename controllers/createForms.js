@@ -26,16 +26,22 @@ module.exports.storeCategoryNames = async (req, res) => {
     const { category } = req.body;
     const { user } = req;
     for (let i = 0; i < user.numOfCategories; i++) {
-        // const categoryDD = [];
-        // categoryDD.push(req.body.category.kategorijaDropDown[i].split(","));
+        const categoryDD = [];
+        if (category.additional) {
+            categoryDD.push(req.body.category.additional[i].split(","));
+        } else {
+            categoryDD.push("");
+        }
         const field = {
             name: category.name[i],
             type: category.type[i],
             color: category.color[i],
+            additional: categoryDD,
             owner: user._id,
         };
 
         const fieldType = new FieldType(field);
+        console.log(field)
         await fieldType.save();
     }
     res.redirect("/form");

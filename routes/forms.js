@@ -13,7 +13,7 @@ router
 
 router.route("/table").get(catchAsync(forms.renderTable));
 
-// router.route("/filter").get(forms.renderFilter).post(catchAsync(forms.storeFilter));
+router.route("/filter").get(forms.renderFilter)
 
 router.route("/show").get(catchAsync(forms.renderCardView));
 

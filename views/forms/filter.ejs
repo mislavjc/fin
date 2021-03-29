@@ -1,17 +1,16 @@
 <% layout('layouts/boilerplateShow')%>
 <div class="container vh-80 d-flex flex-column justify-content-center">
     <div class="row">
-        <h1 class="display-1 text-center">Promjeni narudžbu</h1>
+        <h1 class="display-1 text-center">Pronađi narudžbu</h1>
         <div class="col-lg-6 offset-lg-3">
             <form
-                action="/show/<%= template._id %>/edit?_method=PUT"
+                action="/form"
                 method="POST"
                 novalidate
                 class="validated-form"
-                enctype="multipart/form-data"
             >
-                <% Object.entries(fieldType).forEach((key, i) => {%>
-                <% if (i % 2 == 0) {%>
+                <% Object.entries(fieldType).forEach((key, i) => {%> <% if (i %
+                2 == 0) {%>
                 <div class="row">
                     <div class="col">
                         <div class="mb-3">
@@ -24,12 +23,9 @@
                                 id="category<%= i %>"
                                 name="form[category]"
                             >
-                                <% for (let j = 0; j <
-                                key[1].additional[0].length; j++) {%>
-                                <option
-                                    value="<%= key[1].additional[0][j] %>"
-                                    <%= key[1].additional[0][j] === template.fields[i].value ? "selected" : ""%>
-                                >
+                                <% for (let j = 0; j < key[1].additional.length;
+                                j++) {%>
+                                <option value="<%= key[1].additional[0][j] %>">
                                     <%= key[1].additional[0][j] %>
                                 </option>
                                 <% } %>
@@ -43,7 +39,6 @@
                                 class="form-control category-name"
                                 id="category<%= i %>"
                                 name="form[category]"
-                                value="<%= template.fields[i].value %>"
                             />
                             <% } %>
                         </div>
@@ -60,11 +55,9 @@
                                 id="category<%= i %>"
                                 name="form[category]"
                             >
-                                <% for (let j = 0; j <
-                                key[1].additional.length; j++) {%>
-                                <option
-                                    value="<%= key[1].additional[0][j]%>"
-                                >
+                                <% for (let j = 0; j < key[1].additional.length;
+                                j++) {%>
+                                <option value="<%= key[1].additional[0][j]%>">
                                     <%= key[1].additional[0][j]%>
                                 </option>
                                 <% } %>
@@ -78,23 +71,12 @@
                                 class="form-control category-name"
                                 id="category<%= i %>"
                                 name="form[category]"
-                                value="<%= template.fields[1].value %>"
                             />
                             <% } %>
                         </div>
                     </div>
                 </div>
                 <% } %> <% }) %>
-                <div class="mb-3">
-                    <label for="file" class="form-label">Unesi file:</label>
-                    <input
-                        class="form-control"
-                        type="file"
-                        id="file"
-                        name="image"
-                        multiple
-                    />
-                </div>
                 <button class="btn btn-dark my-3">Spremi</button>
             </form>
         </div>
