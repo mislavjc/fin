@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate')%>
 <div class="container">
-    <h1 class="display-4 text-center">Unos kategorija</h1>
+    <h1 class="display-4 text-center">Unos category</h1>
     <div class="progress" style="height: 3px">
         <div
             class="progress-bar bg-dark"
@@ -22,36 +22,36 @@
                 class="validated-form"
             >
                 <div class="row">
-                    <% for (let i = 1; i <= currentUser.brojKategorija; i++) {%>
-                    <div class="kategorija d-none" id="<%= i %>">
+                    <% for (let i = 1; i <= currentUser.numOfCategories; i++) {%>
+                    <div class="category d-none" id="<%= i %>">
                         <div class="row">
-                            <h4>Kategorija <%= i %></h4>
+                            <h4>category <%= i %></h4>
                             <div class="col">
                                 <div class="mb-3">
                                     <label
-                                        for="kategorija<%= i %>"
+                                        for="category<%= i %>"
                                         class="form-label"
                                         >Naziv kategorije</label
                                     >
                                     <input
                                         type="text"
-                                        class="form-control naziv-kategorija"
-                                        id="kategorija<%= i %>"
-                                        name="createForm[kategorija]"
+                                        class="form-control category-name"
+                                        id="category<%= i %>"
+                                        name="category[name]"
                                     />
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="mb-3">
                                     <label
-                                        for="kategorija<%= i %>Tip"
+                                        for="category<%= i %>Type"
                                         class="form-label"
                                         >Vrsta kategorije</label
                                     >
                                     <select
                                         class="form-select drop-down"
-                                        id="kategorija<%= i %>Tip"
-                                        name="createForm[kategorijaTip]"
+                                        id="category<%= i %>Type"
+                                        name="category[type]"
                                     >
                                         <option selected value="number">
                                             Broj
@@ -64,30 +64,30 @@
                             </div>
                             <div class="col">
                                 <label
-                                    for="kategorija<%= i %>Boja"
+                                    for="category<%= i %>Color"
                                     class="form-label"
                                     >Boja</label
                                 >
                                 <input
                                     type="color"
-                                    class="form-control form-control-color boja-kategorija"
-                                    id="kategorija<%= i %>Boja"
+                                    class="form-control form-control-color category-color"
+                                    id="category<%= i %>Color"
                                     value="#000000"
-                                    name="createForm[kategorijaBoja]"
+                                    name="category[color]"
                                 />
                             </div>
                         </div>
-                        <div class="mb-3 d-none" id="kategorija<%= i %>DD">
+                        <div class="mb-3 d-none" id="category<%= i %>DD">
                             <label
-                                for="kategorija<%= i %>DropDown"
+                                for="category<%= i %>DropDown"
                                 class="form-label"
                                 >Kategorije 1 dropdown</label
                             >
                             <textarea
                                 class="form-control"
-                                id="kategorija<%= i %>DropDown"
+                                id="category<%= i %>DropDown"
                                 rows="3"
-                                name="createForm[kategorijaDropDown]"
+                                name="category[additional]"
                                 placeholder="Unesite stavke koje želite imati u dropdownu sa zarezom(,) kao razmaknicom"
                             ></textarea>
                         </div>
@@ -95,7 +95,7 @@
                     <% } %>
                 </div>
                 <div
-                    class="<%=currentUser.brojKategorija > 5 ? 'my-3' : 'd-none'%>"
+                    class="<%=currentUser.numOfCategories > 5 ? 'my-3' : 'd-none'%>"
                 >
                     <span type="button" class="navigacija" id="previous">
                         🡠 Prije
@@ -112,8 +112,8 @@
         >
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title" id="kategorija1li">Kategorija 1</h5>
-                    <p class="card-text" id="kategorija2li">
+                    <h5 class="card-title" id="category1li">Kategorija 1</h5>
+                    <p class="card-text" id="category2li">
                         Kategorija 2:
                         <b>
                             Lorem ipsum dolor sit amet consectetur adipisicing
@@ -124,33 +124,33 @@
                     </p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <% if (parseInt(currentUser.brojKategorija) % 2 === 0) {%>
-                    <% for (let i = 2; i <= currentUser.brojKategorija / 2; i++)
+                    <% if (parseInt(currentUser.numOfCategories) % 2 === 0) {%>
+                    <% for (let i = 2; i <= currentUser.numOfCategories / 2; i++)
                     {%>
                     <li class="list-group-item">
-                        <span id="kategorija<%=2*i-1%>li"
+                        <span id="category<%=2*i-1%>li"
                             >Kategorija <%= 2*i - 1 %></span
                         >
-                        <span id="kategorija<%=2*i%>li" class="float-end"
+                        <span id="category<%=2*i%>li" class="float-end"
                             >Kategorija <%= 2*i %></span
                         >
                     </li>
                     <% } %> <% } else {%> <% for (let i = 2; i <=
-                    currentUser.brojKategorija / 2; i++) {%>
+                    currentUser.numOfCategories / 2; i++) {%>
                     <li class="list-group-item">
-                        <span id="kategorija<%=2*i-1%>li"
+                        <span id="category<%=2*i-1%>li"
                             >Kategorija <%= 2*i - 1 %></span
                         >
-                        <span id="kategorija<%=2*i%>li" class="float-end"
+                        <span id="category<%=2*i%>li" class="float-end"
                             >Kategorija <%= 2*i %></span
                         >
                     </li>
                     <% } %>
                     <li
                         class="list-group-item"
-                        id="kategorija<%=currentUser.brojKategorija%>li"
+                        id="category<%=currentUser.numOfCategories%>li"
                     >
-                        Kategorija <%=currentUser.brojKategorija %>
+                        category <%=currentUser.numOfCategories %>
                     </li>
                     <% } %>
                 </ul>
@@ -164,4 +164,4 @@
         </div>
     </div>
 </div>
-<script src="/javascripts/kategorije.js"></script>
+<script src="/javascripts/category.js"></script>

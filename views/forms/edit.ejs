@@ -1,49 +1,48 @@
 <% layout('layouts/boilerplateShow')%>
 <div class="container vh-80 d-flex flex-column justify-content-center">
-    <h1 class="display-1 text-center">Promjeni narudžbu</h1>
     <div class="row">
+        <h1 class="display-1 text-center">Promjeni narudžbu</h1>
         <div class="col-lg-6 offset-lg-3">
             <form
-                action="/show/<%=form._id%>/edit?_method=PUT"
+                action="/show/<%= template._id %>/edit?_method=PUT"
                 method="POST"
                 novalidate
                 class="validated-form"
                 enctype="multipart/form-data"
             >
-                <% for (let i = 0; i < currentUser.brojKategorija; i++) {%> <%
-                if (i % 2 == 0) {%>
+                <% Object.entries(fieldType).forEach((key, i) => {%>
+                <% if (i % 2 == 0) {%>
                 <div class="row">
                     <div class="col">
                         <div class="mb-3">
-                            <% if (formData[0].kategorijaTip[i] == "more") {%>
-                            <label for="kategorija<%= i %>" class="form-label"
-                                ><%= formData[0].kategorija[i] %></label
+                            <% if (key[1].type == "more") {%>
+                            <label for="category<%= i %>" class="form-label"
+                                ><%= key[1].name %></label
                             >
                             <select
                                 class="form-select"
-                                id="kategorija<%= i %>"
-                                name="form[kategorija]"
+                                id="category<%= i %>"
+                                name="form[category]"
                             >
                                 <% for (let j = 0; j <
-                                formData[0].kategorijaDD[i].length; j++) {%>
+                                key[1].additional.length; j++) {%>
                                 <option
-                                    value="<%= formData[0].kategorijaDD[i][j]%>"
-                                    <%= formData[0].kategorijaDD[i][j] === form.kategorija[i] ? "selected" : "" %>
+                                    value="<%= key[1].additional[0][j] %>"
                                 >
-                                    <%= formData[0].kategorijaDD[i][j]%>
+                                    <%= key[1].additional[0][j] %>
                                 </option>
                                 <% } %>
                             </select>
                             <% } else {%>
-                            <label for="kategorija<%= i %>" class="form-label"
-                                ><%= formData[0].kategorija[i] %></label
+                            <label for="category<%= i %>" class="form-label"
+                                ><%= key[1].name %></label
                             >
                             <input
-                                type="<%= formData[0].kategorijaTip[i] %>"
-                                class="form-control naziv-kategorija"
-                                id="kategorija<%= i %>"
-                                name="form[kategorija]"
-                                value="<%= form.kategorija[i] %>"
+                                type="<%= key[1].type %>"
+                                class="form-control category-name"
+                                id="category<%= i %>"
+                                name="form[category]"
+                                value="<%= template.fields[i].value %>"
                             />
                             <% } %>
                         </div>
@@ -51,41 +50,40 @@
                     <% } else { %>
                     <div class="col">
                         <div class="mb-3">
-                            <% if (formData[0].kategorijaTip[i] == "more") {%>
-                            <label for="kategorija<%= i %>" class="form-label"
-                                ><%= formData[0].kategorija[i] %></label
+                            <% if (key[1].type == "more") {%>
+                            <label for="category<%= i %>" class="form-label"
+                                ><%= key[1].name %></label
                             >
                             <select
                                 class="form-select"
-                                id="kategorija<%= i %>"
-                                name="form[kategorija]"
+                                id="category<%= i %>"
+                                name="form[category]"
                             >
                                 <% for (let j = 0; j <
-                                formData[0].kategorijaDD[i].length; j++) {%>
+                                key[1].additional.length; j++) {%>
                                 <option
-                                    value="<%= formData[0].kategorijaDD[i][j]%>"
-                                    <%= formData[0].kategorijaDD[i][j] === form.kategorija[i] ? "selected" : "" %>
+                                    value="<%= key[1].additional[0][j]%>"
                                 >
-                                    <%= formData[0].kategorijaDD[i][j]%>
+                                    <%= key[1].additional[0][j]%>
                                 </option>
                                 <% } %>
                             </select>
                             <% } else {%>
-                            <label for="kategorija<%= i %>" class="form-label"
-                                ><%= formData[0].kategorija[i] %></label
+                            <label for="category<%= i %>" class="form-label"
+                                ><%= key[1].name %></label
                             >
                             <input
-                                type="<%= formData[0].kategorijaTip[i] %>"
-                                class="form-control naziv-kategorija"
-                                id="kategorija<%= i %>"
-                                name="form[kategorija]"
-                                value="<%= form.kategorija[i] %>"
+                                type="<%= key[1].type %>"
+                                class="form-control category-name"
+                                id="category<%= i %>"
+                                name="form[category]"
+                                value="<%= template.fields[1].value %>"
                             />
                             <% } %>
                         </div>
                     </div>
                 </div>
-                <% } %> <% } %>
+                <% } %> <% }) %>
                 <div class="mb-3">
                     <label for="file" class="form-label">Unesi file:</label>
                     <input

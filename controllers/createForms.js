@@ -1,29 +1,46 @@
-const CreateForm = require("../models/createForm");
+const Category = require("../models/category");
+const Field = require("../models/field");
+const FieldType = require("../models/fieldType");
+const Text = require("../models/template");
 const User = require("../models/user");
 
 // !Broj kategorija form
 
-module.exports.storeCreateForm = async (req, res) => {
-    const brojKategorija = req.body.createForm.brojKategorija;
-    const user = await User.findByIdAndUpdate(req.user._id, { brojKategorija });
-    req.user.brojKategorija = req.body.createForm.brojKategorija;
+module.exports.storeNumOfCategories = async (req, res) => {
+    const numOfCategories = req.body.category.numOfCategories;
+    const user = await User.findByIdAndUpdate(req.user._id, {
+        numOfCategories,
+    });
+    req.user.numOfCategories = req.body.category.numOfCategories;
     await user.save();
     res.redirect("/create/kategorije");
 };
 
-module.exports.renderCreateForm = (req, res) => {
-    res.render("forms/createForm");
+module.exports.renderNumOfCategories = (req, res) => {
+    res.render("forms/numOfCategories");
 };
 
 // !Unos kategorija form
 
-module.exports.storeCreateKategorije = async (req, res) => {
-    const createForm = new CreateForm(req.body.createForm);
-    createForm.owner = req.user._id;
-    await createForm.save();
+module.exports.storeCategoryNames = async (req, res) => {
+    const { category } = req.body;
+    const { user } = req;
+    for (let i = 0; i < user.numOfCategories; i++) {
+        // const categoryDD = [];
+        // categoryDD.push(req.body.category.kategorijaDropDown[i].split(","));
+        const field = {
+            name: category.name[i],
+            type: category.type[i],
+            color: category.color[i],
+            owner: user._id,
+        };
+
+        const fieldType = new FieldType(field);
+        await fieldType.save();
+    }
     res.redirect("/form");
 };
 
-module.exports.renderCreateKategorije = async (req, res) => {
-    res.render("forms/createKategorije");
+module.exports.renderCategoryNames = async (req, res) => {
+    res.render("forms/categoryNames");
 };

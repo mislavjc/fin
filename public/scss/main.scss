@@ -400,5 +400,6 @@ td {
     a {
         color: #333;
         @include linkHover;
+        display: block;
     }
 }

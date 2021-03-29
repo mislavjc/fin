@@ -2,26 +2,18 @@
 <div class="container vh-80">
     <table class="table">
         <thead>
-            <tr>
-                <% for (let i = 0; i < currentUser.brojKategorija; i++) {%>
-                <th scope="col"><%= formData[0].kategorija[i] %></th>
-                <% } %>
-                <th>Link</th>
-            </tr>
+            <% for (let fieldType of fieldTypes) {%>
+            <th scope="col"><%= fieldType.name %></th>
+            <% } %>
         </thead>
         <tbody>
-            <% for (let form of forms) {%>
+            <% for (let template of templates) {%>
             <tr>
-                <% for (let i = 0; i < currentUser.brojKategorija; i++) {%>
-                <td style="color: <%= formData[0].kategorijaBoja[i] %>">
-                    <%= form.kategorija[i] %>
-                </td>
+                <% for (let i = 0; i < fieldTypes.length; i++) {%>
+                    <td><a href="/show/<%= template._id %>"><%= template.fields[i].value %></a></td>
                 <% } %>
-                <td>
-                    <a href="/show/<%= form._id %>">Više</a>
-                </td>
             </tr>
-            <% } %>
+        <% } %>
         </tbody>
     </table>
 </div>

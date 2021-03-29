@@ -1,136 +1,124 @@
-const CreateForm = require("../models/createForm");
-const User = require("../models/user");
-const Form = require("../models/form");
+const Category = require("../models/category");
+const FieldType = require("../models/fieldType");
+const Order = require("../models/order");
+const Field = require("../models/field");
+const Template = require("../models/template");
 
 // !Form logic
 
 module.exports.storeForm = async (req, res) => {
-    const form = new Form(req.body.form);
-    form.owner = req.user._id;
-    form.datoteke = req.files.map((f) => ({
+    const user = req.user._id;
+    const fieldType = await FieldType.find({ owner: req.user._id });
+    const templates = [];
+    for (let i = 0; i < req.body.form.category.length; i++) {
+        const field = new Field({
+            value: req.body.form.category[i],
+            owner: user,
+            fieldtype: fieldType[i],
+        });
+        await field.save();
+        templates.push(field);
+    }
+    const template = new Template();
+    template.attachments = req.files.map((f) => ({
         url: f.path,
         filename: f.filename,
     }));
-    await form.save();
-    req.flash("success", "Uspješno spremljeno!");
-    res.redirect("/show");
+    template.owner = user;
+    template.fields = templates;
+    await template.save();
+    res.redirect(`/show/${template._id}`);
 };
 
 module.exports.renderForm = async (req, res) => {
-    const user = req.user._id;
-    const formData = await CreateForm.find({ owner: user });
-    const kategorijaDD = [];
-    for (let i = 0; i < req.user.brojKategorija; i++) {
-        if (formData[0].kategorijaDropDown[i].includes(",")) {
-            kategorijaDD.push(formData[0].kategorijaDropDown[i].split(","));
-        } else {
-            kategorijaDD.push("");
-        }
-    }
-    formData[0].kategorijaDD = kategorijaDD;
-    const categoryNumber = req.user.brojKategorija;
-    res.render("forms/form", { formData, categoryNumber });
+    const fieldType = await FieldType.find({ owner: req.user._id });
+    res.render("forms/form", { fieldType });
 };
 
-// !Main show page
+// !Main page
 
-module.exports.formData = async (req, res) => {
-    const user = req.user._id;
-    const forms = await Form.find({ owner: user });
-    const formData = await CreateForm.find({ owner: user });
-    res.render("forms/show", { forms, formData });
+module.exports.renderCardView = async (req, res) => {
+    const templates = await Template.find({ owner: req.user._id }).populate({
+        path: "fields",
+        populate: {
+            path: "fieldtype",
+        },
+    });
+    res.render("forms/cardView", { templates });
 };
 
-// !More info page
-
-module.exports.showForm = async (req, res) => {
-    const user = req.user._id;
-    const formData = await CreateForm.find({ owner: user });
-    const form = await Form.findById(req.params.id);
-    res.render("forms/more", { form, formData });
-};
-
-// !Edit
-
-module.exports.renderEditForm = async (req, res) => {
-    const user = req.user._id;
-    const formData = await CreateForm.find({ owner: user });
-    const { id } = req.params;
-    const form = await Form.findById(id);
-    const kategorijaDD = [];
-    for (let i = 0; i < req.user.brojKategorija; i++) {
-        if (formData[0].kategorijaDropDown[i].includes(",")) {
-            kategorijaDD.push(formData[0].kategorijaDropDown[i].split(","));
-        } else {
-            kategorijaDD.push("");
-        }
-    }
-    formData[0].kategorijaDD = kategorijaDD;
-    const categoryNumber = req.user.brojKategorija;
-    if (!form) {
-        req.flash("error", "Ta narudžba ne postoji!");
-        return res.redirect("/show");
-    }
-    res.render("forms/edit", { form, formData, categoryNumber });
-};
+// !Edit form
 
 module.exports.updateForm = async (req, res) => {
     const { id } = req.params;
-    const form = await Form.findByIdAndUpdate(id, { ...req.body.form });
-    const dat = req.files.map((f) => ({ url: f.path, filename: f.filename }));
-    form.datoteke.push(...dat);
-    await form.save();
+    const template = await Template.findById(id).populate({
+        path: "fields",
+        populate: {
+            path: "fieldtype",
+        },
+    });
+    const attachments = req.files.map((f) => ({
+        url: f.path,
+        filename: f.filename,
+    }));
+    template.attachments.push(...attachments);
+    for (let i = 0; i < req.body.form.category.length; i++) {
+        const field = await Field.findByIdAndUpdate(template.fields[i]._id, {
+            value: req.body.form.category[i],
+        });
+        await field.save();
+    }
+    await template.save();
     req.flash("success", "Uspješno promjenjena narudžba!");
-    res.redirect(`/show/${form._id}`);
+    res.redirect(`/show/${template._id}`);
 };
 
-// !Delete
+module.exports.renderEditForm = async (req, res) => {
+    const fieldType = await FieldType.find({ owner: req.user._id });
+    const template = await Template.findById(req.params.id).populate({
+        path: "fields",
+        populate: {
+            path: "fieldtype",
+        },
+    });
+    if (!template) {
+        req.flash("error", "Ta narudžba ne postoji!");
+        return res.redirect("/show");
+    }
+    res.render("forms/edit", { fieldType, template });
+};
+
+// !Delete order
 
 module.exports.deleteForm = async (req, res) => {
     const { id } = req.params;
-    await Form.findByIdAndDelete(id);
+    await Template.findByIdAndDelete(id);
     req.flash("success", "Uspješno obrisana narudžba!");
     res.redirect("/show");
+};
+
+// !Show form
+
+module.exports.showForm = async (req, res) => {
+    const { id } = req.params;
+    const template = await Template.findById(id).populate({
+        path: "fields",
+        populate: {
+            path: "fieldtype",
+        },
+    });
+    res.render("forms/more", { template });
 };
 
 // !Table view
 
 module.exports.renderTable = async (req, res) => {
-    const user = req.user._id;
-    const forms = await Form.find({ owner: user });
-    const formData = await CreateForm.find({ owner: user });
-    res.render("forms/table", { forms, formData });
-};
-
-// !Filter
-
-module.exports.renderFilter = async (req, res) => {
-    const user = req.user._id;
-    const formData = await CreateForm.find({ owner: user });
-    res.render("forms/filter", { formData });
-};
-
-module.exports.storeFilter = async (req, res) => {
-    const user = req.user._id;
-    const filterData = req.body.form.kategorija;
-    const forms = await Form.find({ owner: user });
-    const filter = {};
-    for (let i = 0; i < filterData.length; i++) {
-        filter[`kategorija[${i}]`] = filterData[i];
-    }
-    for (let i = 0; i < filterData.length; i++) {
-        if (filter[`kategorija[${i}]`] === "") {
-            delete filter[`kategorija[${i}]`];
-        }
-    }
-    console.log(filter);
-    for (let i = 0; i < forms.length; i++) {
-        narudzbe = {};
-        for (let j = 0; j < filterData.length; j++) {
-            narudzbe[`kategorija[${j}]`] = forms[i].kategorija[j];
-        }
-        console.log(narudzbe)
-    }
-    req.flash("success", "Uspiešno spremljeno!");
-    res.redirect("/filter");
+    const templates = await Template.find({ owner: req.user._id }).populate({
+        path: "fields",
+        populate: {
+            path: "fieldtype",
+        },
+    });
+    const fieldTypes = await FieldType.find({ owner: req.user._id });
+    res.render("forms/table", { templates, fieldTypes });
 };

@@ -1,5 +1,5 @@
-const range = document.getElementById("brojKategorija");
-const kategorijeValue = document.getElementById("kategorijeValue");
+const range = document.getElementById("numOfCategories");
+const categoryValue = document.getElementById("categoryValue");
 const valueArr = [1];
 range.addEventListener("input", function () {
     let value = parseInt(range.value);
@@ -8,7 +8,7 @@ range.addEventListener("input", function () {
     if (value != 1) {
         list.classList.remove("d-none");
     }
-    kategorijeValue.innerHTML = "Broj kategorija: " + value;
+    categoryValue.innerHTML = "Broj kategorija: " + value;
     if (valueArr[valueArr.length - 2] > valueArr[valueArr.length - 1]) {
         valueArr.splice(-2);
         document

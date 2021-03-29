@@ -1,7 +1,7 @@
 // !Show dropdown
 [...document.querySelectorAll(".drop-down")].forEach(function (item) {
     item.addEventListener("change", function () {
-        const dropDownId = item.id.slice(0, -3);
+        const dropDownId = item.id.slice(0, -4);
         const dropDown = document.getElementById(dropDownId + "DD");
         if (item.value === "more") {
             dropDown.classList.toggle("d-none");
@@ -12,7 +12,7 @@
     });
 });
 // !Category title
-[...document.querySelectorAll(".naziv-kategorija")].forEach(function (item) {
+[...document.querySelectorAll(".category-name")].forEach(function (item) {
     item.addEventListener("input", function () {
         const listItem = item.id + "li";
         const li = document.getElementById(listItem);
@@ -20,16 +20,16 @@
     });
 });
 // !Color picker
-[...document.querySelectorAll(".boja-kategorija")].forEach(function (item) {
+[...document.querySelectorAll(".category-color")].forEach(function (item) {
     item.addEventListener("input", function () {
-        const bojaKategorija = item.id.slice(0, -4);
-        const li = document.getElementById(bojaKategorija + "li");
+        const categoryColor = item.id.slice(0, -5);
+        const li = document.getElementById(categoryColor + "li");
         li.style = `color: ${item.value}`;
     });
 });
 // !Count # of categories
 let categoryNum = [];
-[...document.querySelectorAll(".kategorija")].forEach(function (item) {
+[...document.querySelectorAll(".category")].forEach(function (item) {
     const id = parseInt(item.id);
     categoryNum.push(id);
     return categoryNum;
@@ -37,7 +37,7 @@ let categoryNum = [];
 categoryNum = categoryNum[categoryNum.length - 1];
 // !Remove all but first 5
 const addDisplayNone = () => {
-    [...document.querySelectorAll(".kategorija")].forEach(function (item) {
+    [...document.querySelectorAll(".category")].forEach(function (item) {
         const id = parseInt(item.id);
         item.classList.add("d-none");
         if (id <= 5) {
@@ -60,7 +60,7 @@ next.addEventListener("click", function () {
         pageStart = 0;
         pageEnd = 5;
     }
-    [...document.querySelectorAll(".kategorija")].forEach(function (item) {
+    [...document.querySelectorAll(".category")].forEach(function (item) {
         const id = parseInt(item.id);
         if (id <= pageStart || id > pageEnd) {
             item.classList.add("d-none");
@@ -81,7 +81,7 @@ previous.addEventListener("click", function () {
         }
     }
     let pageEnd = pageStart + 5;
-    [...document.querySelectorAll(".kategorija")].forEach(function (item) {
+    [...document.querySelectorAll(".category")].forEach(function (item) {
         const id = parseInt(item.id);
         if (id <= pageStart || id > pageEnd) {
             item.classList.add("d-none");

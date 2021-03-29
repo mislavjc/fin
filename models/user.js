@@ -8,7 +8,7 @@ const UserSchema = new Schema({
         required: true,
         unique: true,
     },
-    pretplata: {
+    subscription: {
         type: String,
         default: "Besplatan",
     },
@@ -16,7 +16,7 @@ const UserSchema = new Schema({
         type: String,
         default: "light",
     },
-    brojKategorija: String,
+    numOfCategories: String,
 });
 
 UserSchema.plugin(passportLocalMongoose);
