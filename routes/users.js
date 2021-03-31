@@ -30,6 +30,9 @@ router.get("/logout", users.logout);
 
 // !Account
 
-router.get("/account/:id", users.renderAccount)
+router
+    .route("/account/:id")
+    .get(catchAsync(users.renderAccount))
+    .put(catchAsync(users.editAccount));
 
 module.exports = router;

@@ -1,22 +1,107 @@
 <% layout('layouts/boilerplate')%>
 <div class="container-fluid racun-bg">
     <div
-    class="container vh-100 d-flex flex-column justify-content-center align-items-center"
->
-    <div class="racun">
-        <h1 class="display-4">Dobrodošli, <%= user.username %></h1>
-        <hr>
-        <h2>Postavke računa</h2>
-        <p><span class="text-muted">Korisničko ime:</span> <%= user.username %></p>
-        <p><span class="text-muted">E-mail adresa:</span> <%= user.email %></p>
-        <hr>
-        <h2>Pretplata</h2>
-        <p><span class="text-muted">Vaš trenuti plan je:</span> <%= user.pretplata %></p>
-        <p><span class="text-muted">Iskorišteno podataka za mjesec:</span> 56/100 MB</p>
-        <div class="progress  mb-3">
-            <div class="progress-bar bg-dark" role="progressbar" style="width: 56%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">56%</div>
+        class="container vh-80 d-flex flex-column justify-content-center align-items-center"
+    >
+        <div class="racun show-account my-5">
+            <h1 class="display-4">Dobrodošli, <%= user.username %></h1>
+            <hr />
+            <h2>Postavke računa</h2>
+            <p>
+                <span class="text-muted">Korisničko ime:</span> <%=
+                user.username %>
+            </p>
+            <p>
+                <span class="text-muted">E-mail adresa:</span> <%= user.email %>
+            </p>
+            <button class="btn btn-dark" id="show-edit">Promjeni</button>
+            <hr />
+            <h2>Pretplata</h2>
+            <p>
+                <span class="text-muted">Vaš trenuti plan je:</span> <%=
+                user.pretplata %>
+            </p>
+            <p>
+                <span class="text-muted">Iskorišteno podataka za mjesec:</span>
+                56/100 MB
+            </p>
+            <div class="progress mb-3">
+                <div
+                    class="progress-bar bg-dark"
+                    role="progressbar"
+                    style="width: 56%"
+                    aria-valuenow="25"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                >
+                    56%
+                </div>
+            </div>
+            <a href="/plan" class="koristenje">Promjeni plan ›</a>
         </div>
-        <a href="/plan" class="koristenje">Promjeni plan ›</a>
+        <div class="edit-account racun d-none my-5">
+            <h1 class="display-4">Dobrodošli, <%= user.username %></h1>
+            <hr />
+            <h2>Postavke računa</h2>
+            <form
+                action="/account/<%=user._id%>?_method=PUT"
+                method="POST"
+                novalidate
+                class="validated-form"
+            >
+                <div class="mb-3">
+                    <label for="username" class="form-label"
+                        >Korisničko ime</label
+                    >
+                    <input
+                        type="text"
+                        name="username"
+                        class="form-control"
+                        id="username"
+                        autofocus
+                        value="
+<%= user.username %> "
+                    />
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-control"
+                        id="email"
+                        value="<%= user.email %>"
+                    />
+                </div>
+                <button class="mb-3 btn btn-dark save-changes">
+                    Spremi promjene
+                </button>
+                <p class="koristenje back">Nazad ›</p>
+            </form>
+            <hr />
+            <h2>Pretplata</h2>
+            <p>
+                <span class="text-muted">Vaš trenuti plan je:</span> <%=
+                user.pretplata %>
+            </p>
+            <p>
+                <span class="text-muted">Iskorišteno podataka za mjesec:</span>
+                56/100 MB
+            </p>
+            <div class="progress mb-3">
+                <div
+                    class="progress-bar bg-dark"
+                    role="progressbar"
+                    style="width: 56%"
+                    aria-valuenow="25"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                >
+                    56%
+                </div>
+            </div>
+            <a href="/plan" class="koristenje">Promjeni plan ›</a>
+        </div>
     </div>
 </div>
-</div>
+<script src="/javascripts/account.js"></script>

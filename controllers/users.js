@@ -1,5 +1,7 @@
 const User = require("../models/user");
 
+// !Register
+
 module.exports.renderRegister = (req, res) => {
     res.render("users/register");
 };
@@ -20,6 +22,8 @@ module.exports.register = async (req, res, next) => {
     }
 };
 
+// !Login
+
 module.exports.renderLogin = (req, res) => {
     res.render("users/login");
 };
@@ -31,11 +35,15 @@ module.exports.login = (req, res) => {
     res.redirect(redirectUrl);
 };
 
+// !Logout
+
 module.exports.logout = (req, res) => {
     req.logout();
     req.flash("success", "Doviđenja!");
     res.redirect("/");
 };
+
+// !Account page
 
 module.exports.renderAccount = async (req, res) => {
     const { id } = req.params;
@@ -45,4 +53,15 @@ module.exports.renderAccount = async (req, res) => {
         return res.redirect("/");
     }
     res.render("users/account", { user });
+};
+
+module.exports.editAccount = async (req, res) => {
+    const { id } = req.params;
+    const { username, email } = req.body;
+    console.log(username, email);
+    const user = await User.findByIdAndUpdate(id, { username, email });
+    await user.save();
+    console.log(user)
+    req.flash("success", "Uspješno promjenjene postavke računa!")
+    res.redirect("/login");
 };
