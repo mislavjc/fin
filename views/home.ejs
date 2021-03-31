@@ -82,6 +82,9 @@
                                 >Funkcionalnosti</a
                             >
                             <a class="nav-link" href="#pricing">Cijene</a>
+                            <% if (currentUser && currentUser.numOfCategories >= 1) { %>
+                                <a class="nav-link" href="/show">Aplikacija</a>
+                            <% }%>
                         </div>
                         <div class="navbar-nav ms-auto user">
                             <% if (!currentUser) { %>
@@ -165,9 +168,15 @@
                                     korištenje te je dostupna bilo kada i bilo
                                     gdje.
                                 </p>
+                                <% if (currentUser && currentUser.numOfCategories >= 1) { %>
+                                    <a class="btn btn-dark" href="/show">Započnite korištenje</a>
+                                <% } else if (currentUser) {%>
+                                    <a class="btn btn-dark" href="/create">Započnite korištenje</a>
+                                <% } else {%>
                                 <a href="/register" class="btn btn-dark"
                                     >Započnite korištenje</a
                                 >
+                                <% } %>
                                 <div>
                                     <a href="#features"
                                         ><img
@@ -197,9 +206,15 @@
                             za unos narudžbi.
                         </h2>
                         <div>
+                            <% if (currentUser && currentUser.numOfCategories >= 1) { %>
+                                <a class="koristenje" href="/show">Započnite korištenje <span>›</span></a>
+                            <% } else if (currentUser) {%>
+                                <a class="koristenje" href="/create">Započnite korištenje <span>›</span></a>
+                            <% } else {%>
                             <a href="/register" class="koristenje"
                                 >Započnite korištenje <span>›</span></a
                             >
+                            <% } %>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -233,9 +248,15 @@
                             narudžbama su uvijek lako dostupni.
                         </h2>
                         <div>
+                            <% if (currentUser && currentUser.numOfCategories >= 1) { %>
+                                <a class="koristenje" href="/show">Započnite korištenje <span>›</span></a>
+                            <% } else if (currentUser) {%>
+                                <a class="koristenje" href="/create">Započnite korištenje <span>›</span></a>
+                            <% } else {%>
                             <a href="/register" class="koristenje"
                                 >Započnite korištenje <span>›</span></a
                             >
+                            <% } %>
                         </div>
                     </div>
                 </div>
@@ -385,9 +406,15 @@
                             jedna od mnogih opcija.
                         </h2>
                         <div>
+                            <% if (currentUser && currentUser.numOfCategories >= 1) { %>
+                                <a class="koristenje" href="/show">Započnite korištenje <span>›</span></a>
+                            <% } else if (currentUser) {%>
+                                <a class="koristenje" href="/create">Započnite korištenje <span>›</span></a>
+                            <% } else {%>
                             <a href="/register" class="koristenje"
                                 >Započnite korištenje <span>›</span></a
                             >
+                            <% } %>
                         </div>
                     </div>
                     <a name="pricing"></a>
@@ -596,13 +623,12 @@
                     </div>
                 </div>
                 <h5 class="pt-5 mb-3">&copy;2021 FIN, All Rights Reserved.</h5>
-                <a
-                    href="https://www.google.com/search?q=average+pdf+size&oq=average+pdf+size&aqs=chrome..69i57.6560j0j1&sourceid=chrome&ie=UTF-8"
+                <p
                     target="_blank"
                     class="text-muted"
                     ><span class="text-danger">*</span>Prosječna veličina PDF
-                    file-a iznosi 332,42 KB.</a
-                >
+                    file-a iznosi 332,42 KB.</
+                p>
             </div>
         </footer>
     </body>
