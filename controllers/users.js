@@ -58,10 +58,8 @@ module.exports.renderAccount = async (req, res) => {
 module.exports.editAccount = async (req, res) => {
     const { id } = req.params;
     const { username, email } = req.body;
-    console.log(username, email);
     const user = await User.findByIdAndUpdate(id, { username, email });
     await user.save();
-    console.log(user)
     req.flash("success", "Uspješno promjenjene postavke računa!")
     res.redirect("/login");
 };

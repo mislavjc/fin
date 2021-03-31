@@ -31,6 +31,16 @@
                                 template.fields[i].value ? "selected" : ""%> >
                                 <%= key[1].additional[0][j] %> <% } %>
                             </select>
+                            <% } else if (key[1].type == "textarea") {%>
+                            <label for="category<%= i %>" class="form-label"
+                                ><%= key[1].name %></label
+                            >
+                            <textarea
+                                class="form-control"
+                                id="category<%= i %>"
+                                name="form[category]"
+                                rows="1"
+                            ><%= template.fields[i].value %></textarea>
                             <% } else {%>
                             <label for="category<%= i %>" class="form-label"
                                 ><%= key[1].name %></label
@@ -64,6 +74,16 @@
                                 </option>
                                 <% } %>
                             </select>
+                            <% } else if (key[1].type == "textarea") {%>
+                            <label for="category<%= i %>" class="form-label"
+                                ><%= key[1].name %></label
+                            >
+                            <textarea
+                                class="form-control"
+                                id="category<%= i %>"
+                                name="form[category]"
+                                rows="1"
+                            ><%= template.fields[i].value %></textarea>
                             <% } else {%>
                             <label for="category<%= i %>" class="form-label"
                                 ><%= key[1].name %></label
