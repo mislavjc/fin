@@ -55,7 +55,7 @@ module.exports.renderAccount = async (req, res) => {
     res.render("users/account", { user });
 };
 
-module.exports.editAccount = async (req, res) => {
+module.exports.editAccount = async (req, res) => {2
     const { id } = req.params;
     const { username, email } = req.body;
     const user = await User.findByIdAndUpdate(id, { username, email });
