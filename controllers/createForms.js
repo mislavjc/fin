@@ -43,7 +43,7 @@ module.exports.storeCategoryNames = async (req, res) => {
         const fieldType = new FieldType(field);
         await fieldType.save();
     }
-    res.redirect("/form");
+    res.redirect("/checkout");
 };
 
 module.exports.renderCategoryNames = async (req, res) => {

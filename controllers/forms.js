@@ -74,7 +74,9 @@ module.exports.updateForm = async (req, res) => {
         }
         await template.updateOne(
             {
-                $pull: { attachments: { filename: { $in: req.body.deleteImages } } },
+                $pull: {
+                    attachments: { filename: { $in: req.body.deleteImages } },
+                },
             },
             { new: true }
         );
@@ -130,6 +132,7 @@ module.exports.renderTable = async (req, res) => {
         },
     });
     const fieldTypes = await FieldType.find({ owner: req.user._id });
+    console.log(process.env.SECRET);
     res.render("forms/table", { templates, fieldTypes });
 };
 
@@ -153,4 +156,68 @@ module.exports.renderTable = async (req, res) => {
 module.exports.renderFilter = async (req, res) => {
     const fieldType = await FieldType.find({ owner: req.user._id });
     res.render("forms/filter", { fieldType });
+};
+
+// !Checkout
+
+const stripe = require("stripe")(process.env.STRIPE_SECRET);
+
+module.exports.renderCheckout = (req, res) => {
+    res.render("stripe/checkout");
+};
+
+module.exports.checkoutStarter = async (req, res) => {
+    const session = await stripe.checkout.sessions.create({
+        mode: "subscription",
+        payment_method_types: ["card"],
+        line_items: [
+            {
+                price: process.env.STARTER,
+                quantity: 1,
+            },
+        ],
+        success_url: "https://fin.com.hr/success",
+        cancel_url: "https://fin.com.hr/cancel",
+    });
+    res.json({ id: session.id });
+};
+
+module.exports.checkoutPremium = async (req, res) => {
+    const session = await stripe.checkout.sessions.create({
+        mode: "subscription",
+        payment_method_types: ["card"],
+        line_items: [
+            {
+                price: process.env.PREMIUM,
+                quantity: 1,
+            },
+        ],
+        success_url: "https://fin.com.hr/success",
+        cancel_url: "https://fin.com.hr/cancel",
+    });
+    res.json({ id: session.id });
+};
+
+module.exports.checkoutEnterprise= async (req, res) => {
+    const session = await stripe.checkout.sessions.create({
+        mode: "subscription",
+        payment_method_types: ["card"],
+        line_items: [
+            {
+                price: process.env.ENTERPRISE,
+                quantity: 1,
+            },
+        ],
+        success_url: "https://fin.com.hr/success",
+        cancel_url: "https://fin.com.hr/cancel",
+    });
+    res.json({ id: session.id });
+};
+
+module.exports.renderSuccess = (req, res) => {
+    res.render("stripe/success");
+};
+
+module.exports.renderCancel = (req, res) => {
+    res.render("stripe/cancel");
 };

@@ -13,7 +13,19 @@ router
 
 router.route("/table").get(catchAsync(forms.renderTable));
 
-router.route("/filter").get(forms.renderFilter)
+router.route("/filter").get(forms.renderFilter);
+
+router.get("/checkout", forms.renderCheckout);
+
+router.get("/success", forms.renderSuccess);
+
+router.get("/cancel", forms.renderCancel);
+
+router.post("/starter", forms.checkoutStarter);
+
+router.post("/premium", forms.checkoutPremium);
+
+router.post("/enterprise", forms.checkoutEnterprise);
 
 router.route("/show").get(catchAsync(forms.renderCardView));
 
