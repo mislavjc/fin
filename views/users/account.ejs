@@ -24,6 +24,7 @@
             <div class="<%= ["Starter", "Premium", "Enterprise"].includes(user.subscription) ? "" : "d-none" %>">
                 <p>
                     <span class="text-muted">Iskorišteno podataka za mjesec:</span>
+                    <%= isNaN(user.totalUsage) ? user.totalUsage = 0 : ""  %>
                     <%= (user.totalUsage / 1048576).toFixed(2) %>MB /
                     <% if (user.subscription === "Starter") { %>
                         1024MB
@@ -107,6 +108,7 @@
             <div class="<%= ["Starter", "Premium", "Enterprise"].includes(user.subscription) ? "" : "d-none" %>">
                 <p>
                     <span class="text-muted">Iskorišteno podataka za mjesec:</span>
+                    <%= isNaN(user.totalUsage) ? user.totalUsage = 0 : ""  %>
                     <%= (user.totalUsage / 1048576).toFixed(2) %>MB /
                     <% if (user.subscription === "Starter") { %>
                         1024MB

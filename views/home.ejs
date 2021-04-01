@@ -145,6 +145,7 @@
                                             "Enterprise"].includes(currentUser.subscription)
                                             ? "" : "d-none" %>">
                                             <p>
+                                                <%= isNaN(currentUser.totalUsage) ? currentUser.totalUsage = 0 : ""  %>
                                                 <span class="text-muted"></span>
                                                 <%= (currentUser.totalUsage /
                                                 1048576).toFixed(2) %>MB / <% if

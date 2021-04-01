@@ -475,3 +475,9 @@ td {
         box-shadow: inset 0px 0px 0px 30px #7ac142;
     }
 }
+
+.password-visibility {
+    &:hover {
+        cursor: pointer;
+    }
+}
