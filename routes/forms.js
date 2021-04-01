@@ -12,7 +12,7 @@ router
     .get(isPaying, forms.renderForm)
     .post(isPaying, upload.array("image"), catchAsync(forms.storeForm));
 
-router.route("/table").get(catchAsync(isPaying, forms.renderTable));
+router.route("/table").get(isPaying, catchAsync(forms.renderTable));
 
 router.route("/filter").get(isPaying, forms.renderFilter);
 

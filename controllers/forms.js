@@ -26,7 +26,7 @@ module.exports.storeForm = async (req, res) => {
         filename: f.filename,
         size: f.size
     }));
-    let totalUsage = 0;
+    let totalUsage = user.totalUsage;
     template.attachments.forEach((f) => {
         totalUsage += f.size;
     });
@@ -79,8 +79,8 @@ module.exports.updateForm = async (req, res) => {
         await field.save();
     }
     await template.save();
-    let totalUsage = 0;
-    template.attachments.forEach((f) => {
+    let totalUsage = user.totalUsage;
+    attachments.forEach((f) => {
         totalUsage += f.size;
     });
     user.totalUsage = totalUsage;
