@@ -79,7 +79,7 @@ module.exports.updateForm = async (req, res) => {
         await field.save();
     }
     await template.save();
-    let totalUsage = user.totalUsage;
+    let totalUsage = user.totalUsage || 0;
     attachments.forEach((f) => {
         totalUsage += f.size;
     });
