@@ -9,6 +9,7 @@ const TemplateSchema = new Schema({
         {
             url: String,
             filename: String,
+            size: Number,
         },
     ],
 });

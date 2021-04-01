@@ -21,20 +21,40 @@
                 <span class="text-muted">Vaš trenuti plan je:</span> <%=
                 user.subscription%>
             </p>
-            <p>
-                <span class="text-muted">Iskorišteno podataka za mjesec:</span>
-                56/100 MB
-            </p>
-            <div class="progress mb-3">
-                <div
-                    class="progress-bar bg-dark"
-                    role="progressbar"
-                    style="width: 56%"
-                    aria-valuenow="25"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                >
-                    56%
+            <div class="<%= ["Starter", "Premium", "Enterprise"].includes(user.subscription) ? "" : "d-none" %>">
+                <p>
+                    <span class="text-muted">Iskorišteno podataka za mjesec:</span>
+                    <%= (user.totalUsage / 1048576).toFixed(2) %>MB /
+                    <% if (user.subscription === "Starter") { %>
+                        1024MB
+                    <% } else if (user.subscription === "Premium") {%>
+                        5120MB
+                    <% } else { %>
+                        20480MB
+                    <% } %>
+                </p>
+                <div class="progress mb-3">
+                    <div
+                        class="progress-bar bg-dark"
+                        role="progressbar"
+                        style="width: <% if (user.subscription === "Starter") { %>
+                            <%= ((user.totalUsage / 1048576) / 1024) * 100%>%
+                        <% } else if (user.subscription === "Premium") {%>
+                            <%= ((user.totalUsage / 1048576) / 5120) * 100 %>%
+                        <% } else { %>
+                            <%= ((user.totalUsage / 1048576) / 20480) * 100 %>%
+                        <% } %>"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                    >
+                        <% if (user.subscription === "Starter") { %>
+                            <%= ((user.totalUsage / 1048576) / 1024) * 100 %>%
+                        <% } else if (user.subscription === "Premium") {%>
+                            <%= ((user.totalUsage / 1048576) / 5120) * 100 %>%
+                        <% } else { %>
+                            <%= ((user.totalUsage / 1048576) / 20480) * 100 %>%
+                        <% } %>
+                    </div>
                 </div>
             </div>
             <a href="/checkout" class="koristenje">Promjeni plan ›</a>
@@ -84,20 +104,40 @@
                 <span class="text-muted">Vaš trenuti plan je:</span> <%=
                 user.subscription %>
             </p>
-            <p>
-                <span class="text-muted">Iskorišteno podataka za mjesec:</span>
-                56/100 MB
-            </p>
-            <div class="progress mb-3">
-                <div
-                    class="progress-bar bg-dark"
-                    role="progressbar"
-                    style="width: 56%"
-                    aria-valuenow="25"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                >
-                    56%
+            <div class="<%= ["Starter", "Premium", "Enterprise"].includes(user.subscription) ? "" : "d-none" %>">
+                <p>
+                    <span class="text-muted">Iskorišteno podataka za mjesec:</span>
+                    <%= (user.totalUsage / 1048576).toFixed(2) %>MB /
+                    <% if (user.subscription === "Starter") { %>
+                        1024MB
+                    <% } else if (user.subscription === "Premium") {%>
+                        5120MB
+                    <% } else { %>
+                        20480MB
+                    <% } %>
+                </p>
+                <div class="progress mb-3">
+                    <div
+                        class="progress-bar bg-dark"
+                        role="progressbar"
+                        style="width: <% if (user.subscription === "Starter") { %>
+                            <%= ((user.totalUsage / 1048576) / 1024) * 100%>%
+                        <% } else if (user.subscription === "Premium") {%>
+                            <%= ((user.totalUsage / 1048576) / 5120) * 100 %>%
+                        <% } else { %>
+                            <%= ((user.totalUsage / 1048576) / 20480) * 100 %>%
+                        <% } %>"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                    >
+                        <% if (user.subscription === "Starter") { %>
+                            <%= ((user.totalUsage / 1048576) / 1024) * 100 %>%
+                        <% } else if (user.subscription === "Premium") {%>
+                            <%= ((user.totalUsage / 1048576) / 5120) * 100 %>%
+                        <% } else { %>
+                            <%= ((user.totalUsage / 1048576) / 20480) * 100 %>%
+                        <% } %>
+                    </div>
                 </div>
             </div>
             <a href="/checkout" class="koristenje">Promjeni plan ›</a>

@@ -9,7 +9,7 @@ module.exports.isOwner = async (req, res, next) => {
         res.redirect("/login");
         return next();
     } else {
-        if (req.user._id !== template.owner) {
+        if (req.user._id != template.owner) {
             req.flash("error", "Zabranjen pristup!");
             return res.redirect("/");
         }
@@ -21,9 +21,7 @@ module.exports.isOwner = async (req, res, next) => {
 
 module.exports.isPaying = async (req, res, next) => {
     const subscriptionPlans = ["Starter", "Premium", "Enterprise"];
-    if (req.user.subscription.includes(subscriptionPlans)) {
-        next();
-    } else {
+    if (!subscriptionPlans.includes(req.user.subscription)) {
         return res.redirect("/checkout");
     }
     next();

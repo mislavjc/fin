@@ -17,6 +17,7 @@ const UserSchema = new Schema({
         default: "light",
     },
     numOfCategories: String,
+    totalUsage: Number,
 });
 
 UserSchema.plugin(passportLocalMongoose);

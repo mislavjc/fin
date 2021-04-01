@@ -7,13 +7,14 @@ const User = require("../models/user");
 // !Form logic
 
 module.exports.storeForm = async (req, res) => {
-    const user = req.user._id;
+    const userId = req.user._id;
+    const user = await User.findById(userId);
     const fieldType = await FieldType.find({ owner: req.user._id });
     const templates = [];
     for (let i = 0; i < req.body.form.category.length; i++) {
         const field = new Field({
             value: req.body.form.category[i],
-            owner: user,
+            owner: userId,
             fieldtype: fieldType[i],
         });
         await field.save();
@@ -23,8 +24,15 @@ module.exports.storeForm = async (req, res) => {
     template.attachments = req.files.map((f) => ({
         url: f.path,
         filename: f.filename,
+        size: f.size
     }));
-    template.owner = user;
+    let totalUsage = 0;
+    template.attachments.forEach((f) => {
+        totalUsage += f.size;
+    });
+    user.totalUsage = totalUsage;
+    await user.save();
+    template.owner = userId;
     template.fields = templates;
     await template.save();
     res.redirect(`/show/${template._id}`);
@@ -51,6 +59,7 @@ module.exports.renderCardView = async (req, res) => {
 
 module.exports.updateForm = async (req, res) => {
     const { id } = req.params;
+    const user = await User.findById(req.user._id)
     const template = await Template.findById(id).populate({
         path: "fields",
         populate: {
@@ -60,6 +69,7 @@ module.exports.updateForm = async (req, res) => {
     const attachments = req.files.map((f) => ({
         url: f.path,
         filename: f.filename,
+        size: f.size,
     }));
     template.attachments.push(...attachments);
     for (let i = 0; i < req.body.form.category.length; i++) {
@@ -69,6 +79,12 @@ module.exports.updateForm = async (req, res) => {
         await field.save();
     }
     await template.save();
+    let totalUsage = 0;
+    template.attachments.forEach((f) => {
+        totalUsage += f.size;
+    });
+    user.totalUsage = totalUsage;
+    await user.save();
     if (req.body.deleteImages) {
         for (let filename of req.body.deleteImages) {
             await cloudinary.uploader.destroy(filename);
@@ -133,7 +149,6 @@ module.exports.renderTable = async (req, res) => {
         },
     });
     const fieldTypes = await FieldType.find({ owner: req.user._id });
-    console.log(process.env.SECRET);
     res.render("forms/table", { templates, fieldTypes });
 };
 
@@ -168,7 +183,9 @@ module.exports.renderCheckout = (req, res) => {
 };
 
 module.exports.checkoutStarter = async (req, res) => {
-    const user = await User.findByIdAndUpdate(req.user._id, {subscription: "Starter"});
+    const user = await User.findByIdAndUpdate(req.user._id, {
+        subscription: "Starter",
+    });
     await user.save();
     const session = await stripe.checkout.sessions.create({
         mode: "subscription",
@@ -186,7 +203,9 @@ module.exports.checkoutStarter = async (req, res) => {
 };
 
 module.exports.checkoutPremium = async (req, res) => {
-    const user = await User.findByIdAndUpdate(req.user._id, {subscription: "Premium"});
+    const user = await User.findByIdAndUpdate(req.user._id, {
+        subscription: "Premium",
+    });
     await user.save();
     const session = await stripe.checkout.sessions.create({
         mode: "subscription",
@@ -204,7 +223,9 @@ module.exports.checkoutPremium = async (req, res) => {
 };
 
 module.exports.checkoutEnterprise = async (req, res) => {
-    const user = await User.findByIdAndUpdate(req.user._id, {subscription: "Enterprise"});
+    const user = await User.findByIdAndUpdate(req.user._id, {
+        subscription: "Enterprise",
+    });
     await user.save();
     const session = await stripe.checkout.sessions.create({
         mode: "subscription",
