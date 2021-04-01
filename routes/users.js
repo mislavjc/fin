@@ -30,6 +30,8 @@ router.get("/logout", users.logout);
 
 // !Verification
 
+router.get("/verification", users.renderVerify);
+
 router.get("/verification/:id", users.verifyUser);
 
 // !Account

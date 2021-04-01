@@ -1,4 +1,5 @@
 const Template = require("./models/template");
+const User = require("./models/user");
 
 // !Validation
 
@@ -23,6 +24,22 @@ module.exports.isPaying = async (req, res, next) => {
     const subscriptionPlans = ["Starter", "Premium", "Enterprise"];
     if (!subscriptionPlans.includes(req.user.subscription)) {
         return res.redirect("/checkout");
+    }
+    next();
+};
+
+// !Verification
+
+module.exports.isVerified = async (req, res, next) => {
+    if (!req.user) {
+        res.redirect("/login")
+        return next();
+    } else {
+        const user = await User.findById(req.user._id);
+    if (user.status != "verified") {
+        req.flash("error", "Niste verificirali mail");
+        return res.redirect("/");
+    }
     }
     next();
 };

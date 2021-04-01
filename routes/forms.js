@@ -5,16 +5,21 @@ const catchAsync = require("../utils/catchAsync");
 const multer = require("multer");
 const { storage } = require("../cloudinary");
 const upload = multer({ storage });
-const { isOwner, isPaying } = require("../middleware");
+const { isOwner, isPaying, isVerified } = require("../middleware");
 
 router
     .route("/form")
-    .get(isPaying, forms.renderForm)
-    .post(isPaying, upload.array("image"), catchAsync(forms.storeForm));
+    .get(isVerified, isPaying, forms.renderForm)
+    .post(
+        isVerified,
+        isPaying,
+        upload.array("image"),
+        catchAsync(forms.storeForm)
+    );
 
-router.route("/table").get(isPaying, catchAsync(forms.renderTable));
+router.route("/table").get(isVerified, isPaying, catchAsync(forms.renderTable));
 
-router.route("/filter").get(isPaying, forms.renderFilter);
+router.route("/filter").get(isVerified, isPaying, forms.renderFilter);
 
 router.get("/checkout", forms.renderCheckout);
 
@@ -28,17 +33,20 @@ router.post("/premium", forms.checkoutPremium);
 
 router.post("/enterprise", forms.checkoutEnterprise);
 
-router.route("/show").get(isPaying, catchAsync(forms.renderCardView));
+router
+    .route("/show")
+    .get(isVerified, isPaying, catchAsync(forms.renderCardView));
 
 router
     .route("/show/:id")
-    .get(isOwner, isPaying, catchAsync(forms.showForm))
-    .delete(isOwner, isPaying, catchAsync(forms.deleteForm));
+    .get(isVerified, isOwner, isPaying, catchAsync(forms.showForm))
+    .delete(isVerified, isOwner, isPaying, catchAsync(forms.deleteForm));
 
 router
     .route("/show/:id/edit")
-    .get(isOwner, isPaying, catchAsync(forms.renderEditForm))
+    .get(isVerified, isOwner, isPaying, catchAsync(forms.renderEditForm))
     .put(
+        isVerified,
         isOwner,
         isPaying,
         upload.array("image"),

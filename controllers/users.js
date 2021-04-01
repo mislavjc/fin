@@ -1,6 +1,6 @@
 const User = require("../models/user");
-const nodemailer = require("nodemailer")
-const cryptoRandomString = require('crypto-random-string');
+const nodemailer = require("nodemailer");
+const cryptoRandomString = require("crypto-random-string");
 
 // !Register
 
@@ -30,12 +30,11 @@ module.exports.register = async (req, res, next) => {
         };
         user.verify = link;
         await user.save();
-        console.log(user);
         transporter.sendMail(messageOptions);
         req.login(registeredUser, (err) => {
             if (err) return next(err);
             req.flash("success", "Uspješno ste se registrirali!");
-            res.redirect("/");
+            res.redirect("/verification");
         });
     } catch (e) {
         req.flash("error", e.message);
@@ -45,17 +44,22 @@ module.exports.register = async (req, res, next) => {
 
 // !Verification
 
-module.exports.verifyUser = async (req, res, next) => {
+module.exports.verifyUser = async (req, res) => {
     const user = await User.findById(req.user._id);
-    const {id} = req.params;
+    const { id } = req.params;
     if (user.verify == id) {
         user.status = "verified";
-        res.redirect("/");
+        res.render("users/verified");
     } else {
         req.flash("error", "Neispravan verifikacijski kod");
-        res.redirect("/");
+        res.redirect("/verification");
     }
-}
+    await user.save();
+};
+
+module.exports.renderVerify = (req, res) => {
+    res.render("users/verify");
+};
 
 // !Login
 
