@@ -21,7 +21,9 @@ module.exports.isOwner = async (req, res, next) => {
 
 module.exports.isPaying = async (req, res, next) => {
     const subscriptionPlans = ["Starter", "Premium", "Enterprise"];
-    if (!req.user.subscription.includes(subscriptionPlans)) {
+    if (req.user.subscription.includes(subscriptionPlans)) {
+        next();
+    } else {
         return res.redirect("/checkout");
     }
     next();
