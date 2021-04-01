@@ -10,7 +10,7 @@ const UserSchema = new Schema({
     },
     subscription: {
         type: String,
-        default: "Besplatan",
+        default: "Bez pretplate",
     },
     theme: {
         type: String,

@@ -1,7 +1,4 @@
-const Category = require("../models/category");
-const Field = require("../models/field");
 const FieldType = require("../models/fieldType");
-const Text = require("../models/template");
 const User = require("../models/user");
 
 // !Broj kategorija form

@@ -2,6 +2,7 @@ const FieldType = require("../models/fieldType");
 const Field = require("../models/field");
 const Template = require("../models/template");
 const { cloudinary } = require("../cloudinary");
+const User = require("../models/user");
 
 // !Form logic
 
@@ -167,6 +168,8 @@ module.exports.renderCheckout = (req, res) => {
 };
 
 module.exports.checkoutStarter = async (req, res) => {
+    const user = await User.findByIdAndUpdate(req.user._id, {subscription: "Starter"});
+    await user.save();
     const session = await stripe.checkout.sessions.create({
         mode: "subscription",
         payment_method_types: ["card"],
@@ -183,6 +186,8 @@ module.exports.checkoutStarter = async (req, res) => {
 };
 
 module.exports.checkoutPremium = async (req, res) => {
+    const user = await User.findByIdAndUpdate(req.user._id, {subscription: "Premium"});
+    await user.save();
     const session = await stripe.checkout.sessions.create({
         mode: "subscription",
         payment_method_types: ["card"],
@@ -198,7 +203,9 @@ module.exports.checkoutPremium = async (req, res) => {
     res.json({ id: session.id });
 };
 
-module.exports.checkoutEnterprise= async (req, res) => {
+module.exports.checkoutEnterprise = async (req, res) => {
+    const user = await User.findByIdAndUpdate(req.user._id, {subscription: "Enterprise"});
+    await user.save();
     const session = await stripe.checkout.sessions.create({
         mode: "subscription",
         payment_method_types: ["card"],
