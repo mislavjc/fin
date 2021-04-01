@@ -82,8 +82,9 @@
                                 >Funkcionalnosti</a
                             >
                             <a class="nav-link" href="#pricing">Cijene</a>
-                            <% if (currentUser && currentUser.numOfCategories >= 1) { %>
-                                <a class="nav-link" href="/show">Aplikacija</a>
+                            <% if (currentUser && currentUser.numOfCategories >=
+                            1) { %>
+                            <a class="nav-link" href="/show">Aplikacija</a>
                             <% }%>
                         </div>
                         <div class="navbar-nav ms-auto user">
@@ -134,6 +135,27 @@
                                             <%= currentUser.subscription %>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a
+                                            class="dropdown-item nohover"
+                                            href="#"
+                                        >
+                                            <div class="<%= ["Starter",
+                                            "Premium",
+                                            "Enterprise"].includes(currentUser.subscription)
+                                            ? "" : "d-none" %>">
+                                            <p>
+                                                <span class="text-muted"></span>
+                                                <%= (currentUser.totalUsage /
+                                                1048576).toFixed(2) %>MB / <% if
+                                                (currentUser.subscription ===
+                                                "Starter") { %> 1024MB <% } else
+                                                if (currentUser.subscription ===
+                                                "Premium") {%> 5120MB <% } else
+                                                { %> 20480MB <% } %>
+                                            </p>
+                                        </a>
+                                    </li>
                                     <li><hr class="dropdown-divider" /></li>
                                     <li>
                                         <a
@@ -168,10 +190,15 @@
                                     korištenje te je dostupna bilo kada i bilo
                                     gdje.
                                 </p>
-                                <% if (currentUser && currentUser.numOfCategories >= 1) { %>
-                                    <a class="btn btn-dark" href="/show">Započnite korištenje</a>
+                                <% if (currentUser &&
+                                currentUser.numOfCategories >= 1) { %>
+                                <a class="btn btn-dark" href="/show"
+                                    >Započnite korištenje</a
+                                >
                                 <% } else if (currentUser) {%>
-                                    <a class="btn btn-dark" href="/create">Započnite korištenje</a>
+                                <a class="btn btn-dark" href="/create"
+                                    >Započnite korištenje</a
+                                >
                                 <% } else {%>
                                 <a href="/register" class="btn btn-dark"
                                     >Započnite korištenje</a
@@ -206,10 +233,15 @@
                             za unos narudžbi.
                         </h2>
                         <div>
-                            <% if (currentUser && currentUser.numOfCategories >= 1) { %>
-                                <a class="koristenje" href="/show">Započnite korištenje <span>›</span></a>
+                            <% if (currentUser && currentUser.numOfCategories >=
+                            1) { %>
+                            <a class="koristenje" href="/show"
+                                >Započnite korištenje <span>›</span></a
+                            >
                             <% } else if (currentUser) {%>
-                                <a class="koristenje" href="/create">Započnite korištenje <span>›</span></a>
+                            <a class="koristenje" href="/create"
+                                >Započnite korištenje <span>›</span></a
+                            >
                             <% } else {%>
                             <a href="/register" class="koristenje"
                                 >Započnite korištenje <span>›</span></a
@@ -248,10 +280,15 @@
                             narudžbama su uvijek lako dostupni.
                         </h2>
                         <div>
-                            <% if (currentUser && currentUser.numOfCategories >= 1) { %>
-                                <a class="koristenje" href="/show">Započnite korištenje <span>›</span></a>
+                            <% if (currentUser && currentUser.numOfCategories >=
+                            1) { %>
+                            <a class="koristenje" href="/show"
+                                >Započnite korištenje <span>›</span></a
+                            >
                             <% } else if (currentUser) {%>
-                                <a class="koristenje" href="/create">Započnite korištenje <span>›</span></a>
+                            <a class="koristenje" href="/create"
+                                >Započnite korištenje <span>›</span></a
+                            >
                             <% } else {%>
                             <a href="/register" class="koristenje"
                                 >Započnite korištenje <span>›</span></a
@@ -406,10 +443,15 @@
                             jedna od mnogih opcija.
                         </h2>
                         <div>
-                            <% if (currentUser && currentUser.numOfCategories >= 1) { %>
-                                <a class="koristenje" href="/show">Započnite korištenje <span>›</span></a>
+                            <% if (currentUser && currentUser.numOfCategories >=
+                            1) { %>
+                            <a class="koristenje" href="/show"
+                                >Započnite korištenje <span>›</span></a
+                            >
                             <% } else if (currentUser) {%>
-                                <a class="koristenje" href="/create">Započnite korištenje <span>›</span></a>
+                            <a class="koristenje" href="/create"
+                                >Započnite korištenje <span>›</span></a
+                            >
                             <% } else {%>
                             <a href="/register" class="koristenje"
                                 >Započnite korištenje <span>›</span></a
@@ -623,12 +665,10 @@
                     </div>
                 </div>
                 <h5 class="pt-5 mb-3">&copy;2021 FIN, All Rights Reserved.</h5>
-                <p
-                    target="_blank"
-                    class="text-muted"
-                    ><span class="text-danger">*</span>Prosječna veličina PDF
-                    file-a iznosi 332,42 KB.</
-                p>
+                <p target="_blank" class="text-muted">
+                    <span class="text-danger">*</span>Prosječna veličina PDF
+                    file-a iznosi 332,42 KB.
+                </p>
             </div>
         </footer>
     </body>
