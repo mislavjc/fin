@@ -29,6 +29,7 @@ module.exports.register = async (req, res, next) => {
             from: "mislav.jovanic@coreline.agency",
         };
         user.verify = link;
+        user.timeVerified = Math.floor(Date.now() / 1000);
         await user.save();
         transporter.sendMail(messageOptions);
         req.login(registeredUser, (err) => {
@@ -47,9 +48,16 @@ module.exports.register = async (req, res, next) => {
 module.exports.verifyUser = async (req, res) => {
     const user = await User.findById(req.user._id);
     const { id } = req.params;
+    const timeNow = Math.floor(Date.now() / 1000);
+    const timeBetween = timeNow - user.timeVerified;
     if (user.verify == id) {
-        user.status = "verified";
-        res.render("users/verified");
+        if (timeBetween > 600) {
+            req.flash("error", "Vrijeme za verifikaciju je isteklo!");
+            res.redirect("/verification");
+        } else {
+            user.status = "verified";
+            res.render("users/verified");
+        }
     } else {
         req.flash("error", "Neispravan verifikacijski kod");
         res.redirect("/verification");

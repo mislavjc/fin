@@ -22,7 +22,8 @@ const UserSchema = new Schema({
         type: String,
         default: "Pending",
     },
-    verify: String
+    verify: String,
+    timeVerified: Number,
 });
 
 UserSchema.plugin(passportLocalMongoose);
