@@ -18,6 +18,11 @@ const UserSchema = new Schema({
     },
     numOfCategories: String,
     totalUsage: Number,
+    status: {
+        type: String,
+        default: "Pending",
+    },
+    verify: String
 });
 
 UserSchema.plugin(passportLocalMongoose);

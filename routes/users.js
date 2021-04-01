@@ -28,6 +28,10 @@ router
 
 router.get("/logout", users.logout);
 
+// !Verification
+
+router.get("/verification/:id", users.verifyUser);
+
 // !Account
 
 router

@@ -1,4 +1,6 @@
 const User = require("../models/user");
+const nodemailer = require("nodemailer")
+const cryptoRandomString = require('crypto-random-string');
 
 // !Register
 
@@ -11,6 +13,25 @@ module.exports.register = async (req, res, next) => {
         const { email, username, password } = req.body;
         const user = new User({ email, username });
         const registeredUser = await User.register(user, password);
+        const transporter = nodemailer.createTransport({
+            service: "Gmail",
+            auth: {
+                user: process.env.EMAIL,
+                pass: process.env.PASS,
+            },
+        });
+        const link = cryptoRandomString({ length: 10 });
+        const messageOptions = {
+            subject: "Test",
+            text: "Link za verifikaciju",
+            html: `<a href="fin.com.hr/verification/${link}">Link za verifikaciju</a>`,
+            to: email,
+            from: "mislav.jovanic@coreline.agency",
+        };
+        user.verify = link;
+        await user.save();
+        console.log(user);
+        transporter.sendMail(messageOptions);
         req.login(registeredUser, (err) => {
             if (err) return next(err);
             req.flash("success", "Uspješno ste se registrirali!");
@@ -21,6 +42,20 @@ module.exports.register = async (req, res, next) => {
         res.redirect("/register");
     }
 };
+
+// !Verification
+
+module.exports.verifyUser = async (req, res, next) => {
+    const user = await User.findById(req.user._id);
+    const {id} = req.params;
+    if (user.verify == id) {
+        user.status = "verified";
+        res.redirect("/");
+    } else {
+        req.flash("error", "Neispravan verifikacijski kod");
+        res.redirect("/");
+    }
+}
 
 // !Login
 
@@ -55,11 +90,12 @@ module.exports.renderAccount = async (req, res) => {
     res.render("users/account", { user });
 };
 
-module.exports.editAccount = async (req, res) => {2
+module.exports.editAccount = async (req, res) => {
+    2;
     const { id } = req.params;
     const { username, email } = req.body;
     const user = await User.findByIdAndUpdate(id, { username, email });
     await user.save();
-    req.flash("success", "Uspješno promjenjene postavke računa!")
+    req.flash("success", "Uspješno promjenjene postavke računa!");
     res.redirect("/login");
 };
