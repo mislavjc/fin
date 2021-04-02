@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const nodemailer = require("nodemailer");
+const inLineCss = require("nodemailer-juice");
 const cryptoRandomString = require("crypto-random-string");
 
 // !Register
@@ -20,12 +21,39 @@ module.exports.register = async (req, res, next) => {
                 pass: process.env.PASS,
             },
         });
+        transporter.use("compile", inLineCss());
         const link = cryptoRandomString({ length: 10 });
         const messageOptions = {
-            subject: "Test",
+            subject: "FIN verifikacija",
             text: "Link za verifikaciju",
-            html: `<a href="fin.com.hr/verification/${link}">Link za verifikaciju</a>`,
-            to: email,
+            html: `
+            <style>
+                h1 {
+                    text-align: center;
+                }
+                button {
+                    background: black;
+                    width: 20vw;
+                    margin: 0 auto;
+                    border: 1px solid white;
+                    border-radius: 10px;
+                }
+                a {
+                    color: white;
+                    font-size: 1.25rem
+                }
+                div {
+                    height: 30vh;
+                    display: grid;
+                    place-items: center;
+                }
+            </style>
+            <div>
+            <h1>Kliknite na link za verifikaciju</h1>
+            <button><a href="fin.com.hr/verification/${link}">Link za verifikaciju</a></button>
+            </div>
+            `,
+            to: link,
             from: "mislav.jovanic@coreline.agency",
         };
         user.verify = link;
