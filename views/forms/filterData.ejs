@@ -1,0 +1,115 @@
+<% layout('layouts/boilerplateShow')%>
+<div class="container vh-80">
+    <div class="row">
+        <% if (templates.length == 0) {%>
+        <div
+            class="vh-80 d-flex flex-column justify-content-center align-items-center"
+        >
+            <h1 class="display-4">Nema pronađenih unosa</h1>
+            <a href="/filter" class="koristenje">Nazad na filter</a>
+        </div>
+        <% } else {%>
+        <h1 class="display-4 text-center mt-3">Pronađeni unosi</h1>
+        <% } %> <% for (let template of templates) {%>
+        <div class="col-lg-4">
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5
+                        class="card-title"
+                        style="color: <%= template.fields[0].fieldtype.color %>"
+                    >
+                        <%= template.fields[0].fieldtype.name %>: <%=
+                        template.fields[0].value %>
+                    </h5>
+                    <p
+                        class="card-text"
+                        style="color: <%= template.fields[1].fieldtype.color %>"
+                    >
+                        <%= template.fields[1].fieldtype.name %>: <%=
+                        template.fields[1].value %>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <% for (let i = 2; i < template.fields.length; i++) {%>
+                    <li
+                        class="list-group-item"
+                        style="color: <%= template.fields[i].fieldtype.color %>"
+                    >
+                        <%= template.fields[i].fieldtype.name %>: <%=
+                        template.fields[i].value %>
+                    </li>
+                    <% } %>
+                </ul>
+                <div class="card-body">
+                    <a
+                        href="/show/<%= template._id %>/edit"
+                        class="card-link btn btn-dark"
+                        >Promjeni</a
+                    >
+                    <a
+                        href="/show/<%= template._id %>/"
+                        class="card-link btn btn-secondary"
+                        >Više</a
+                    >
+                    <button
+                        type="button"
+                        class="btn btn-danger float-end"
+                        data-bs-toggle="modal"
+                        data-bs-target="#id<%= template._id%>"
+                    >
+                        Obriši
+                    </button>
+                    <!-- Modal delete -->
+                    <div
+                        class="modal fade"
+                        id="id<%= template._id %>"
+                        tabindex="-1"
+                        aria-labelledby="exampleModalLabel"
+                        aria-hidden="true"
+                    >
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5
+                                        class="modal-title"
+                                        id="exampleModalLabel"
+                                    >
+                                        Obrisati narudžbu?
+                                    </h5>
+                                    <button
+                                        type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                    ></button>
+                                </div>
+                                <div class="modal-body">
+                                    Narudžba Z će biti obrisana.
+                                </div>
+                                <div class="modal-footer">
+                                    <button
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        data-bs-dismiss="modal"
+                                    >
+                                        Prekini
+                                    </button>
+                                    <form
+                                        action="/show/<%= template._id %>?_method=DELETE"
+                                        method="POST"
+                                        class="ms-auto"
+                                    >
+                                        <button class="btn btn-danger">
+                                            Obriši
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>

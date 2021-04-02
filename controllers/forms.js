@@ -24,7 +24,7 @@ module.exports.storeForm = async (req, res) => {
     template.attachments = req.files.map((f) => ({
         url: f.path,
         filename: f.filename,
-        size: f.size
+        size: f.size,
     }));
     let totalUsage = user.totalUsage;
     template.attachments.forEach((f) => {
@@ -59,7 +59,7 @@ module.exports.renderCardView = async (req, res) => {
 
 module.exports.updateForm = async (req, res) => {
     const { id } = req.params;
-    const user = await User.findById(req.user._id)
+    const user = await User.findById(req.user._id);
     const template = await Template.findById(id).populate({
         path: "fields",
         populate: {
@@ -154,20 +154,41 @@ module.exports.renderTable = async (req, res) => {
 
 // !Filter logic
 
-// module.epxorts.storeFilter = async (req, res) => {
-//     const user = req.user._id;
-//     const fieldType = await FieldType.find({ owner: req.user._id });
-//     const templates = [];
-//     for (let i = 0; i < req.body.form.category.length; i++) {
-//         const field = new Field({
-//             value: req.body.form.category[i],
-//             owner: user,
-//             fieldtype: fieldType[i],
-//         });
-//         await field.save();
-//         templates.push(field);
-//     }
-// }
+module.exports.filterOrders = async (req, res) => {
+    const values = [];
+    for (let i = 0; i < req.body.form.category.length; i++) {
+        const value = req.body.form.category[i];
+        if (value != "") {
+            values.push(value);
+        }
+    }
+    const fields = await Field.find({ value: { $in: values } });
+    if (values.length < req.user.numOfCategories) {
+        const templates = await Template.find({
+            fields: { $in: fields.map((field) => field._id) },
+        }).populate({
+            path: "fields",
+            populate: {
+                path: "fieldtype",
+            },
+        });
+        res.render("forms/filterData", { templates });
+    } else {
+        const templates = await Template.find({
+            fields: {
+                $not: {
+                    $elemMatch: { $nin: fields.map((field) => field._id) },
+                },
+            },
+        }).populate({
+            path: "fields",
+            populate: {
+                path: "fieldtype",
+            },
+        });
+        res.render("forms/filterData", { templates });
+    }
+};
 
 module.exports.renderFilter = async (req, res) => {
     const fieldType = await FieldType.find({ owner: req.user._id });

@@ -19,7 +19,7 @@ router
 
 router.route("/table").get(isVerified, isPaying, catchAsync(forms.renderTable));
 
-router.route("/filter").get(isVerified, isPaying, forms.renderFilter);
+router.route("/filter").get(isVerified, isPaying, forms.renderFilter).post(forms.filterOrders);
 
 router.get("/checkout", forms.renderCheckout);
 
