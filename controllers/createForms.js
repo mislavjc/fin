@@ -33,10 +33,10 @@ module.exports.storeCategoryNames = async (req, res) => {
             name: category.name[i],
             type: category.type[i],
             color: category.color[i],
+            required: category.required[i] || "n",
             additional: categoryDD,
             owner: user._id,
         };
-
         const fieldType = new FieldType(field);
         await fieldType.save();
     }

@@ -22,11 +22,12 @@
                 class="validated-form"
             >
                 <div class="row">
-                    <% for (let i = 1; i <= currentUser.numOfCategories; i++) {%>
+                    <% for (let i = 1; i <= currentUser.numOfCategories; i++)
+                    {%>
                     <div class="category d-none" id="<%= i %>">
                         <div class="row">
                             <h4>Kategorija <%= i %></h4>
-                            <div class="col-7">
+                            <div class="col-4">
                                 <div class="mb-3">
                                     <label
                                         for="category<%= i %>"
@@ -41,7 +42,7 @@
                                     />
                                 </div>
                             </div>
-                            <div class="col-3">
+                            <div class="col-4">
                                 <div class="mb-3">
                                     <label
                                         for="category<%= i %>Type"
@@ -56,14 +57,16 @@
                                         <option selected value="number">
                                             Broj
                                         </option>
-                                        <option value="text">Tekst</option>
+                                        <option value="text">Tekst (linija)</option>
+                                        <option value="textarea">
+                                            Tekst (blok linija)
+                                        </option>
                                         <option value="date">Datum</option>
-                                        <option value="more">Više njih</option>
-                                        <option value="textarea">Textarea</option>
+                                        <option value="more">Padajući izbornik</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col">
                                 <label
                                     for="category<%= i %>Color"
                                     class="form-label"
@@ -76,6 +79,24 @@
                                     value="#000000"
                                     name="category[color]"
                                 />
+                            </div>
+                            <div class="col">
+                                <label for="category<%= i %>Required" class="form-label">Obavezno</label>
+                                    <input
+                                        class="btn-check required-button"
+                                        type="checkbox"
+                                        value="y"
+                                        name="category[required]"
+                                        id="category<%= i %>Required"
+                                        autocomplete="off"
+                                    />
+                                    <label
+                                        class="btn btn-outline-dark"
+                                        id="category<%= i %>ReqLabel"
+                                        for="category<%= i %>Required"
+                                    >
+                                        Ne
+                                    </label>
                             </div>
                         </div>
                         <div class="mb-3 d-none" id="category<%= i %>DD">
@@ -114,20 +135,12 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title" id="category1li">Kategorija 1</h5>
-                    <p class="card-text" id="category2li">
-                        Kategorija 2:
-                        <b>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Dolores odit adipisci similique esse atque
-                            corporis itaque repellat dolorem nisi sit deserunt,
-                            consequuntur ex provident natus?
-                        </b>
-                    </p>
+                    <p class="card-text" id="category2li">Kategorija 2</p>
                 </div>
                 <ul class="list-group list-group-flush">
                     <% if (parseInt(currentUser.numOfCategories) % 2 === 0) {%>
-                    <% for (let i = 2; i <= currentUser.numOfCategories / 2; i++)
-                    {%>
+                    <% for (let i = 2; i <= currentUser.numOfCategories / 2;
+                    i++) {%>
                     <li class="list-group-item">
                         <span id="category<%=2*i-1%>li"
                             >Kategorija <%= 2*i - 1 %></span

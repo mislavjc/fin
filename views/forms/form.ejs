@@ -23,6 +23,7 @@
                                 class="form-select"
                                 id="category<%= i %>"
                                 name="form[category]"
+                                <%= key[1].required == "y" ? "required" : "n"%>
                             >
                                 <% for (let j = 0; j <
                                 key[1].additional[0].length; j++) {%>
@@ -40,6 +41,7 @@
                                 id="category<%= i %>"
                                 name="form[category]"
                                 rows="1"
+                                <%= key[1].required == "y" ? "required" : "n"%>
                             ></textarea>
                             <% } else {%>
                             <label for="category<%= i %>" class="form-label"
@@ -50,6 +52,7 @@
                                 class="form-control category-name"
                                 id="category<%= i %>"
                                 name="form[category]"
+                                <%= key[1].required == "y" ? "required" : "n"%>
                             />
                             <% } %>
                         </div>
@@ -65,6 +68,7 @@
                                 class="form-select"
                                 id="category<%= i %>"
                                 name="form[category]"
+                                <%= key[1].required == "y" ? "required" : "n"%>
                             >
                                 <% for (let j = 0; j < key[1].additional.length;
                                 j++) {%>
@@ -82,6 +86,7 @@
                                 id="category<%= i %>"
                                 name="form[category]"
                                 rows="1"
+                                <%= key[1].required == "y" ? "required" : "n"%>
                             ></textarea>
                             <% } else {%>
                             <label for="category<%= i %>" class="form-label"
@@ -92,6 +97,7 @@
                                 class="form-control category-name"
                                 id="category<%= i %>"
                                 name="form[category]"
+                                <%= key[1].required == "y" ? "required" : "n"%>
                             />
                             <% } %>
                         </div>

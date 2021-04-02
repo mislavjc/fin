@@ -5,6 +5,10 @@ const FieldTypeSchema = new Schema({
     name: String,
     type: String,
     color: String,
+    required: {
+        type:  String,
+        default: "n"
+    },
     additional: Schema.Types.Mixed,
     owner: String,
 });

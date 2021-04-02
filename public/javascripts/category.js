@@ -27,6 +27,21 @@
         li.style = `color: ${item.value}`;
     });
 });
+// !Required button
+[...document.querySelectorAll(".required-button")].forEach(function (item) {
+    let count = 0;
+    item.addEventListener("click", function () {
+        const requiredButton = item.id.slice(0, -8);
+        console.log(requiredButton)
+        const label = document.getElementById(requiredButton + "ReqLabel");
+        if (count % 2 == 0) {
+            label.innerHTML = "Da"
+        } else {
+            label.innerHTML = "Ne"
+        }
+        count++;
+    });
+});
 // !Count # of categories
 let categoryNum = [];
 [...document.querySelectorAll(".category")].forEach(function (item) {
