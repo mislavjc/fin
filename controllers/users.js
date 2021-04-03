@@ -53,8 +53,8 @@ module.exports.register = async (req, res, next) => {
             <button><a href="fin.com.hr/verification/${link}">Link za verifikaciju</a></button>
             </div>
             `,
-            to: link,
-            from: "mislav.jovanic@coreline.agency",
+            to: email,
+            from: process.env.EMAIL,
         };
         user.verify = link;
         user.timeVerified = Math.floor(Date.now() / 1000);
