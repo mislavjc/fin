@@ -50,7 +50,7 @@ module.exports.register = async (req, res, next) => {
             </style>
             <div>
             <h1>Kliknite na link za verifikaciju</h1>
-            <button><a href="fin.com.hr/verification/${link}">Link za verifikaciju</a></button>
+            <button><a href="https://fin.com.hr/verification/${link}">Link za verifikaciju</a></button>
             </div>
             `,
             to: email,
