@@ -70,7 +70,7 @@
                                 name="form[category]"
                                 <%= key[1].required == "y" ? "required" : "n"%>
                             >
-                                <% for (let j = 0; j < key[1].additional.length;
+                                <% for (let j = 0; j < key[1].additional[0].length;
                                 j++) {%>
                                 <option value="<%= key[1].additional[0][j]%>">
                                     <%= key[1].additional[0][j]%>
